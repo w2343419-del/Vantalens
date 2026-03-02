@@ -607,45 +607,95 @@ article .post-content,
     color: var(--accent-color);
 }
 
-/* ===== 分页 ===== */
+/* ===== 分页 - 简洁圆润设计 ===== */
 .pagination {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    padding: 20px 0;
+    gap: 8px;
+    padding: 40px 0;
     margin-top: 40px;
-    /* 防止分页组件加载导致的跳动 */
-    contain: style paint;
-    /* 确保分页信息有固定空间 */
-    min-height: 50px;
+    position: relative;
 }
 
-.pagination a,
-.pagination span {
-    padding: 8px 16px;
-    border-radius: 8px;
-    transition: background-color var(--anim-normal) var(--ease-smooth),
-        color var(--anim-normal) var(--ease-smooth),
-        transform var(--anim-normal) var(--ease-smooth);
-    /* 防止文本抖动 */
+/* 统一的按钮样式 */
+.pagination-btn {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    padding: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    white-space: nowrap;
-}
-
-.pagination a:hover {
-    background-color: var(--accent-color);
-    color: white;
-    transform: translateY(-2px);
-}
-
-.pagination-info {
-    /* 防止页面信息导致的抖动 */
-    margin-left: auto;
-    padding: 0 10px;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 10px;
+    background: #e8eef5;
+    color: #64748b;
+    text-decoration: none;
+    transition: all 0.2s ease;
     flex-shrink: 0;
+    box-sizing: border-box;
+}
+
+.pagination-btn:hover {
+    background: #d1dce8;
+    color: #475569;
+}
+
+/* 当前页样式 */
+.pagination-btn.active {
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+    color: white;
+    font-weight: 600;
+    cursor: default;
+}
+
+/* 禁用状态 */
+.pagination-btn.disabled {
+    color: #cbd5e1;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* 省略号 */
+.pagination-dots {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* 页面信息 */
+.pagination-info {
+    display: none;
+}
+
+/* 响应式 */
+@media screen and (max-width: 768px) {
+    .pagination {
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+    
+    .pagination-btn,
+    .pagination-dots {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+    
+    .pagination-info {
+        position: static;
+        width: 100%;
+        margin-top: 15px;
+        text-align: center;
+    }
 }
 
 /* ===== 暗色模式 ===== */
@@ -669,6 +719,39 @@ article .post-content,
 
 [data-scheme="dark"] .main::-webkit-scrollbar-thumb:hover {
     background-color: rgba(200, 200, 200, 0.6);
+}
+
+/* 暗色模式下的分页样式 */
+[data-scheme="dark"] .pagination-btn {
+    background: #1e293b;
+    color: #cbd5e1;
+}
+
+[data-scheme="dark"] .pagination-btn:hover {
+    background: #334155;
+    color: #e2e8f0;
+}
+
+[data-scheme="dark"] .pagination-btn.active {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+}
+
+
+[data-scheme="dark"] .pagination-info {
+    background: #0f172a;
+    border-color: #334155;
+}
+
+[data-scheme="dark"] .page-info-text {
+    color: #94a3b8;
+}
+[data-scheme="dark"] .pagination-btn.disabled {
+    color: #475569;
+}
+
+[data-scheme="dark"] .pagination-dots {
+    color: #64748b;
 }
 
 /* ===== 响应式设计 ===== */

@@ -2,76 +2,31 @@
 {{- if gt $pag.TotalPages 1 -}}
 <nav class="pagination" role="navigation" aria-label="pagination">
     {{- /* 上一页按钮 */ -}}
-    <a class="page-link {{ if not $pag.Prev }}disabled{{ end }}"
-        {{- if $pag.Prev -}}href="{{ $pag.Prev.URL }}" {{- end -}}
-        aria-label="{{ i18n "pagination.prev" | default "Previous page" }}" 
-        {{- if not $pag.Prev -}}aria-disabled="true"{{- end -}}>
-        <span class="pagination-arrow">‹</span>
-        <span class="pagination-text">{{ i18n "pagination.prev" | default "Prev" }}</span>
-    </a>
-
-    {{- /* 页码逻辑 */ -}}
-    {{- $window := 2 -}} <!-- 减少窗口大小以适应更多页码 -->
-    {{- $showEllipsis := true -}}
-
-    {{- /* 第一页 */ -}}
-    {{- if ne $pag.PageNumber 1 -}}
-    <a class="page-link" href="{{ $pag.First.URL }}" aria-label="Page 1">1</a>
+    {{- if $pag.Prev -}}
+    <a class="pagination-btn" href="{{ $pag.Prev.URL }}" aria-label="Previous page"><</a>
     {{- else -}}
-    <span class="page-link current" aria-current="page">1</span>
+    <span class="pagination-btn disabled"><</span>
     {{- end -}}
 
-    {{- /* 左省略号 */ -}}
-    {{- if and $showEllipsis (gt $pag.PageNumber (add $window 2)) -}}
-    <span class="page-link pagination-link">...</span>
-    {{- end -}}
-
-    {{- /* 中间页码 */ -}}
+    {{- /* 显示所有页码 */ -}}
     {{- range $pag.Pagers -}}
-        {{- if and (gt .PageNumber 1) (lt .PageNumber $pag.TotalPages) -}}
-            {{- if and (ge .PageNumber (sub $pag.PageNumber $window)) (le .PageNumber (add $pag.PageNumber $window)) -}}
-            {{- if ne .PageNumber 1 -}} <!-- 避免重复显示第一页 -->
-            {{- if ne .PageNumber $pag.TotalPages -}} <!-- 避免重复显示最后一页 -->
-            <a class="page-link {{ if eq .PageNumber $pag.PageNumber }}current{{ end }}"
-                {{- if eq .PageNumber $pag.PageNumber -}}aria-current="page" {{- end -}} 
-                href="{{ .URL }}"
-                aria-label="Page {{ .PageNumber }}">
-                {{ .PageNumber }}
-            </a>
-            {{- end -}}
-            {{- end -}}
-            {{- end -}}
-        {{- end -}}
+    {{- if eq .PageNumber $pag.PageNumber -}}
+    <span class="pagination-btn active">{{ .PageNumber }}</span>
+    {{- else -}}
+    <a class="pagination-btn" href="{{ .URL }}" aria-label="Page {{ .PageNumber }}">{{ .PageNumber }}</a>
     {{- end -}}
-
-    {{- /* 右省略号 */ -}}
-    {{- if and $showEllipsis (lt $pag.PageNumber (sub $pag.TotalPages (add $window 1))) -}}
-    <span class="page-link pagination-link">...</span>
-    {{- end -}}
-
-    {{- /* 最后一页 */ -}}
-    {{- if gt $pag.TotalPages 1 -}}
-        {{- if ne $pag.PageNumber $pag.TotalPages -}}
-        <a class="page-link" href="{{ $pag.Last.URL }}" aria-label="Page {{ $pag.TotalPages }}">{{ $pag.TotalPages }}</a>
-        {{- else -}}
-        <span class="page-link current" aria-current="page">{{ $pag.TotalPages }}</span>
-        {{- end -}}
     {{- end -}}
 
     {{- /* 下一页按钮 */ -}}
-    <a class="page-link {{ if not $pag.Next }}disabled{{ end }}"
-        {{- if $pag.Next -}}href="{{ $pag.Next.URL }}" {{- end -}} 
-        aria-label="{{ i18n "pagination.next" | default "Next page" }}"
-        {{- if not $pag.Next -}}aria-disabled="true"{{- end -}}>
-        <span class="pagination-text">{{ i18n "pagination.next" | default "Next" }}</span>
-        <span class="pagination-arrow">›</span>
-    </a>
+    {{- if $pag.Next -}}
+    <a class="pagination-btn" href="{{ $pag.Next.URL }}" aria-label="Next page">></a>
+    {{- else -}}
+    <span class="pagination-btn disabled">></span>
+    {{- end -}}
 
     {{- /* 页面信息显示 */ -}}
     <div class="pagination-info">
-        <span class="page-info-text">
-            {{ i18n "pagination.info" | default (printf "Page %d of %d" $pag.PageNumber $pag.TotalPages) }}
-        </span>
+        <span class="page-info-text">Page {{ $pag.PageNumber }} of {{ $pag.TotalPages }}</span>
     </div>
 </nav>
 {{- end -}}
