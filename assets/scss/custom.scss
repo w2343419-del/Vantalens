@@ -875,3 +875,63 @@ article,
 .sidebar-copyright:hover {
     opacity: 0.9;
 }
+
+/* ===== 文章标题样式增强 - 提高二三级标题区分度 ===== */
+.article-content {
+    /* H2 样式 - 主要章节标题 */
+    h2 {
+        font-size: 1.95em;
+        font-weight: 700;
+        margin-top: 1.5em;
+        margin-bottom: 0.8em;
+        color: #2c3e50;
+        padding-top: 0.5em;
+        padding-bottom: 0.3em;
+        border-bottom: 3px solid var(--accent-color);
+        border-inline-start: var(--heading-border-size) solid var(--accent-color);
+    }
+
+    /* H3 样式 - 次要章节标题 */
+    h3 {
+        font-size: 1.45em;
+        font-weight: 600;
+        margin-top: 1.2em;
+        margin-bottom: 0.6em;
+        color: #34495e;
+        padding-top: 0.3em;
+        padding-bottom: 0.2em;
+        border-bottom: 2px solid rgba(52, 73, 94, 0.6);
+        border-inline-start: var(--heading-border-size) solid var(--accent-color);
+        background: linear-gradient(90deg, rgba(52, 73, 94, 0.03) 0%, transparent 100%);
+        padding-inline-start: calc(var(--card-padding) - var(--heading-border-size));
+    }
+
+    /* H4 样式 - 三级标题 */
+    h4 {
+        font-size: 1.2em;
+        font-weight: 600;
+        margin-top: 1em;
+        margin-bottom: 0.5em;
+        color: #34495e;
+        border-bottom: 1px dashed rgba(52, 73, 94, 0.5);
+    }
+}
+
+/* 暗色模式下的标题样式 */
+[data-scheme="dark"] .article-content {
+    h2 {
+        color: #ecf0f1;
+        border-bottom-color: var(--accent-color);
+    }
+
+    h3 {
+        color: #bdc3c7;
+        border-bottom-color: rgba(236, 240, 241, 0.6);
+        background: linear-gradient(90deg, rgba(236, 240, 241, 0.08) 0%, transparent 100%);
+    }
+
+    h4 {
+        color: #bdc3c7;
+        border-bottom-color: rgba(236, 240, 241, 0.5);
+    }
+}

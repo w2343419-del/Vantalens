@@ -18,6 +18,10 @@ theme/
 # 系统文件
 .DS_Store
 Thumbs.db
+.DS_Store?
+*.swp
+*.swo
+*~
 
 # 敏感配置文件
 .env
@@ -27,6 +31,8 @@ config/comment_settings.json
 config/_default/comment_settings.json
 comments.json
 **/comments.json
+config/*.log
+config/**/*.log
 
 # 编译文件
 WSwriter.exe
@@ -34,16 +40,23 @@ WSwriter.exe
 *.dll
 *.so
 *.dylib
+*.o
 
 # IDE
 .idea/
 .vscode/
 *.swp
 *.swo
+vscode-settings.json
+
 # 日志文件
 server-error.log
 server-output.log
 *.log
+*.log.json
+logs/
+error.log
+debug.log
 
 # 备份和临时文件
 *.exe~
@@ -51,3 +64,26 @@ server-output.log
 test-*.ps1
 诊断报告.md
 _断断报告.md
+*.tmp
+*.bak.js
+
+# 包管理器
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Go 相关
+vendor/
+go.sum
+
+# 构建输出
+dist/
+build/
+out/
+
+# 编辑器备份
+*~
+*.swp
+*.swo
+.~*
