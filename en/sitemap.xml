@@ -2,8 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://w2343419-del.github.io/WangScape/en/categories/algorithm/</loc>
+    <lastmod>2026-03-15T22:06:00+08:00</lastmod>
+  </url><url>
     <loc>https://w2343419-del.github.io/WangScape/en/categories/</loc>
-    <lastmod>2026-03-12T20:00:00+08:00</lastmod>
+    <lastmod>2026-03-15T22:06:00+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
@@ -15,8 +18,24 @@
                 href="https://w2343419-del.github.io/WangScape/en/categories/"
                 />
   </url><url>
+    <loc>https://w2343419-del.github.io/WangScape/en/tags/high-precision-calculations/</loc>
+    <lastmod>2026-03-15T22:06:00+08:00</lastmod>
+  </url><url>
+    <loc>https://w2343419-del.github.io/WangScape/en/p/high-precision-calculations-in-c/</loc>
+    <lastmod>2026-03-15T22:06:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://w2343419-del.github.io/WangScape/p/c-%E8%AF%AD%E8%A8%80%E7%9A%84%E9%AB%98%E7%B2%BE%E5%BA%A6%E8%AE%A1%E7%AE%97/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://w2343419-del.github.io/WangScape/en/p/high-precision-calculations-in-c/"
+                />
+  </url><url>
     <loc>https://w2343419-del.github.io/WangScape/en/</loc>
-    <lastmod>2026-03-12T20:00:00+08:00</lastmod>
+    <lastmod>2026-03-15T22:06:00+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
@@ -26,6 +45,32 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://w2343419-del.github.io/WangScape/en/"
+                />
+  </url><url>
+    <loc>https://w2343419-del.github.io/WangScape/en/post/</loc>
+    <lastmod>2026-03-15T22:06:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://w2343419-del.github.io/WangScape/post/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://w2343419-del.github.io/WangScape/en/post/"
+                />
+  </url><url>
+    <loc>https://w2343419-del.github.io/WangScape/en/tags/</loc>
+    <lastmod>2026-03-15T22:06:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://w2343419-del.github.io/WangScape/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://w2343419-del.github.io/WangScape/en/tags/"
                 />
   </url><url>
     <loc>https://w2343419-del.github.io/WangScape/en/categories/java/</loc>
@@ -67,19 +112,6 @@
                 href="https://w2343419-del.github.io/WangScape/en/p/java-swing-layout-manager-explained-in-detail/"
                 />
   </url><url>
-    <loc>https://w2343419-del.github.io/WangScape/en/post/</loc>
-    <lastmod>2026-03-12T20:00:00+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://w2343419-del.github.io/WangScape/post/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://w2343419-del.github.io/WangScape/en/post/"
-                />
-  </url><url>
     <loc>https://w2343419-del.github.io/WangScape/en/tags/swing/</loc>
     <lastmod>2026-03-12T20:00:00+08:00</lastmod>
     <xhtml:link
@@ -92,22 +124,6 @@
                 hreflang="en"
                 href="https://w2343419-del.github.io/WangScape/en/tags/swing/"
                 />
-  </url><url>
-    <loc>https://w2343419-del.github.io/WangScape/en/tags/</loc>
-    <lastmod>2026-03-12T20:00:00+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://w2343419-del.github.io/WangScape/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://w2343419-del.github.io/WangScape/en/tags/"
-                />
-  </url><url>
-    <loc>https://w2343419-del.github.io/WangScape/en/categories/algorithm/</loc>
-    <lastmod>2026-03-09T10:32:00+08:00</lastmod>
   </url><url>
     <loc>https://w2343419-del.github.io/WangScape/en/p/time-and-space-complexity/</loc>
     <lastmod>2026-03-09T10:32:00+08:00</lastmod>
