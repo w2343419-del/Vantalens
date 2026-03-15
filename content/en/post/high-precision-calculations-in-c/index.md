@@ -8,12 +8,12 @@ title: "High-precision calculations in C"
 description: "Core ideas and implementation methods of high-precision computing in C language"
 date: 2026-03-15T22:06:00+08:00
 image: ""
-math: false
+math: true
 license: ""
 hidden: false
 comments: true
-draft: true
-ws_sync_zh_hash: "d6811d24a59bf0ff4b9373fd0269af9583f53ae819136e9f67e7de72cfb45fc2"
+draft: false
+ws_sync_zh_hash: "9182f3f9355f829c21321b75205d18ac76dcc094993a5e8309fe0452e4984436"
 ---
 
 # C language high precision calculation

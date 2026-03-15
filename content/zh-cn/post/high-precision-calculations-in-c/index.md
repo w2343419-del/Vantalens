@@ -8,11 +8,11 @@ title: "C 语言的高精度计算"
 description: "关于 C 语言中高精度计算的核心思想与实现方式"
 date: 2026-03-15T22:06:00+08:00
 image: ""
-math: false
+math: true
 license: ""
 hidden: false
 comments: true
-draft: true
+draft: false
 ---
 
 # C 语言高精度计算
