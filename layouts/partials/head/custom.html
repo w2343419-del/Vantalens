@@ -1,11 +1,20 @@
 <!-- Umami 访问分析脚本 -->
 <script>
   (function() {
+        const isLocalHost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+
+        // 本地开发环境不加载跨域统计脚本，避免 401 噪音和无意义请求。
+        if (isLocalHost) return;
+
     const script = document.createElement('script');
     script.defer = true;
     script.src = 'https://umami-6uy33nhgb-w2343419-dels-projects.vercel.app/script.js';
     script.setAttribute('data-website-id', '5c2547c2-59d7-4d72-a06a-f30718804b0e');
-    script.setAttribute('data-domains', 'localhost');
+        script.setAttribute('data-domains', window.location.hostname);
+        script.onerror = function () {
+            // 统计脚本不可用时静默降级，避免影响页面主功能。
+            window.umami = window.umami || function () {};
+        };
     document.head.appendChild(script);
   })();
 </script>

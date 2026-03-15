@@ -488,13 +488,73 @@
         return body.slice(idx + marker.length).trim();
     }
 
+    async function fetchJsonWithTimeout(url, timeoutMs) {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(function () {
+            controller.abort();
+        }, timeoutMs);
+
+        try {
+            const response = await fetch(url, { signal: controller.signal });
+            if (!response.ok) {
+                throw new Error('HTTP ' + response.status);
+            }
+            return await response.json();
+        } finally {
+            clearTimeout(timeoutId);
+        }
+    }
+
+    let commentsLoadStarted = false;
+
+    function normalizeComment(raw) {
+        return {
+            id: raw.id || raw.Id || '',
+            author: raw.author || raw.Author || '',
+            email: raw.email || raw.Email || '',
+            content: raw.content || raw.Content || '',
+            timestamp: raw.timestamp || raw.Time || '',
+            parent_id: raw.parent_id || raw.ParentID || '',
+            approved: (typeof raw.approved === 'boolean') ? raw.approved : (raw.Approved !== false),
+            images: raw.images || raw.Images || []
+        };
+    }
+
     async function loadComments() {
+        if (commentsLoadStarted) return;
+        commentsLoadStarted = true;
+
+        const commentsListEl = document.getElementById('comments-list');
+        if (!commentsListEl) return;
+
         try {
             if (useGithubComments()) {
                 const labels = encodeURIComponent(githubLabelComment + ',' + githubLabelApproved);
                 const apiUrl = 'https://api.github.com/repos/' + githubRepo + '/issues?state=open&per_page=100&labels=' + labels;
-                const res = await fetch(apiUrl);
-                const issues = await res.json();
+                let issues = [];
+
+                try {
+                    issues = await fetchJsonWithTimeout(apiUrl, 8000);
+                } catch (e) {
+                    // GitHub API 超时或失败时，优先快速降级到本站 API。
+                    if (apiBase) {
+                        const fallback = await fetchJsonWithTimeout(buildApiUrl('/api/comments?path=' + encodeURIComponent(currentPostPath)), 8000);
+                        const fallbackData = Array.isArray(fallback.data) ? fallback.data.map(normalizeComment) : [];
+                        let fallbackHtml = '';
+                        if (fallbackData.length > 0) {
+                            const fallbackTree = buildCommentTree(fallbackData);
+                            fallbackTree.forEach(comment => {
+                                fallbackHtml += renderCommentItem(comment);
+                            });
+                        } else {
+                            fallbackHtml = '<div style="text-align: center; color: #999; padding: 40px;">' + i18n.noComments + '</div>';
+                        }
+                        commentsListEl.innerHTML = fallbackHtml;
+                        return;
+                    }
+
+                    throw e;
+                }
 
                 let html = '';
                 const filtered = Array.isArray(issues) ? issues.filter(issue => {
@@ -505,15 +565,15 @@
 
                 if (filtered.length > 0) {
                     const data = filtered.map(issue => {
-                        return {
-                            Id: String(issue.id),
-                            Author: extractCommentField(issue.body, 'Author') || (issue.user ? issue.user.login : 'GitHub'),
-                            Email: extractCommentField(issue.body, 'Email') || '',
-                            Content: extractCommentContent(issue.body),
-                            Time: issue.created_at || '',
-                            ParentID: '',
-                            Approved: true
-                        };
+                            return normalizeComment({
+                                Id: String(issue.id),
+                                Author: extractCommentField(issue.body, 'Author') || (issue.user ? issue.user.login : 'GitHub'),
+                                Email: extractCommentField(issue.body, 'Email') || '',
+                                Content: extractCommentContent(issue.body),
+                                Time: issue.created_at || '',
+                                ParentID: '',
+                                Approved: true
+                            });
                     });
                     const tree = buildCommentTree(data);
                     tree.forEach(comment => {
@@ -523,14 +583,14 @@
                     html = '<div style="text-align: center; color: #999; padding: 40px;">' + i18n.noComments + '</div>';
                 }
 
-                document.getElementById('comments-list').innerHTML = html;
+                commentsListEl.innerHTML = html;
             } else {
-                const res = await fetch(buildApiUrl('/api/comments?path=' + encodeURIComponent(currentPostPath)));
-                const data = await res.json();
+                const data = await fetchJsonWithTimeout(buildApiUrl('/api/comments?path=' + encodeURIComponent(currentPostPath)), 8000);
                 
                 let html = '';
                 if (data.data && data.data.length > 0) {
-                    const tree = buildCommentTree(data.data);
+                    const normalizedData = data.data.map(normalizeComment);
+                    const tree = buildCommentTree(normalizedData);
                     tree.forEach(comment => {
                         html += renderCommentItem(comment);
                     });
@@ -538,11 +598,14 @@
                     html = '<div style="text-align: center; color: #999; padding: 40px;">' + i18n.noComments + '</div>';
                 }
                 
-                document.getElementById('comments-list').innerHTML = html;
+                commentsListEl.innerHTML = html;
             }
         } catch (e) {
-            document.getElementById('comments-list').innerHTML = '<div style="color: red; padding: 20px;">' + i18n.loadFailed + '</div>';
+            commentsListEl.innerHTML = '<div style="color: red; padding: 20px;">' + i18n.loadFailed + '</div>';
             console.error(i18n.loadError, e);
+        } finally {
+            // 加载失败后允许手动重试。
+            commentsLoadStarted = false;
         }
     }
 
@@ -765,14 +828,33 @@
         }
     }
 
-    // 页面加载时获取评论
-    document.addEventListener('DOMContentLoaded', function() {
-        loadComments();
-    });
+    function scheduleCommentsLoad() {
+        const commentsContainer = document.getElementById('comments-list');
+        if (!commentsContainer) return;
 
-    // 如果页面已加载，直接加载评论
-    if (document.readyState === 'interactive' || document.readyState === 'complete') {
-        loadComments();
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        observer.disconnect();
+                        loadComments();
+                    }
+                });
+            }, { rootMargin: '300px 0px' });
+
+            observer.observe(commentsContainer);
+            return;
+        }
+
+        // 不支持 IntersectionObserver 时，延后执行，避免首屏竞争。
+        setTimeout(loadComments, 300);
+    }
+
+    // 页面加载后按需触发评论加载（避免重复请求和首屏阻塞）。
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', scheduleCommentsLoad, { once: true });
+    } else {
+        scheduleCommentsLoad();
     }
 </script>
 {{ end }}
