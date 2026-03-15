@@ -12,28 +12,27 @@
         <pubDate>Sun, 15 Mar 2026 22:06:00 +0800</pubDate>
         
         <guid>https://w2343419-del.github.io/WangScape/en/p/high-precision-calculations-in-c/</guid>
-        <description>&lt;h1 id=&#34;c-language-high-precision-calculation&#34;&gt;C language high precision calculation
-&lt;/h1&gt;&lt;p&gt;The maximum built-in integer &lt;code&gt;unsigned long long&lt;/code&gt; in C is about $1.8\ times 10 ^ {19} $, which will overflow once the number exceeds this range. The high-precision calculation uses an integer array to store each bit of the large number, and cooperates with the loop simulation vertical operation to break the limit of the number of bits.&lt;/p&gt;
-&lt;h2 id=&#34;questions&#34;&gt;Questions
-&lt;/h2&gt;&lt;h3 id=&#34;background&#34;&gt;Background
-&lt;/h3&gt;&lt;p&gt;Standard shapes are often inadequate in competition and engineering, and typical scenarios include:&lt;/p&gt;
+        <description>&lt;p&gt;The maximum built-in integer &lt;code&gt;unsigned long long&lt;/code&gt; in C is about $1.8\ times 10 ^ {19} $, which will overflow once the number exceeds this range. The high-precision calculation uses an integer array to store each bit of the large number, and cooperates with the loop simulation vertical operation to break the limit of the number of bits.&lt;/p&gt;
+&lt;h1 id=&#34;questions&#34;&gt;Questions
+&lt;/h1&gt;&lt;h2 id=&#34;background&#34;&gt;Background
+&lt;/h2&gt;&lt;p&gt;Standard shapes are often inadequate in competition and engineering, and typical scenarios include:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Calculate $100! $ (~ 158 digits)&lt;/li&gt;
 &lt;li&gt;Large power operations (e.g. RSA key generation)&lt;/li&gt;
 &lt;li&gt;Financial calculations requiring precise results&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;core-issues&#34;&gt;Core issues
-&lt;/h3&gt;&lt;p&gt;For two non-negative integers of arbitrary length, add, subtract, multiply, and divide four operations are implemented, and the results are accurate.&lt;/p&gt;
-&lt;h3 id=&#34;binding-effect&#34;&gt;BINDING EFFECT
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;core-issues&#34;&gt;Core issues
+&lt;/h2&gt;&lt;p&gt;For two non-negative integers of arbitrary length, add, subtract, multiply, and divide four operations are implemented, and the results are accurate.&lt;/p&gt;
+&lt;h2 id=&#34;binding-effect&#34;&gt;BINDING EFFECT
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Up to $10 ^ 3$ digits (adjustable &lt;code&gt;MAXN&lt;/code&gt; extension)&lt;/li&gt;
 &lt;li&gt;This article only deals with non-negative integers; negative numbers require the addition of symbol bits&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;idea-analysis&#34;&gt;Idea Analysis
-&lt;/h2&gt;&lt;h3 id=&#34;core-ideas&#34;&gt;Core Ideas
-&lt;/h3&gt;&lt;p&gt;Save each digit of the large number * * in reverse order * * into the &lt;code&gt;int&#39; array: &lt;/code&gt;d [0]&lt;code&gt;for one digit,&lt;/code&gt;d [1]` for ten digits, and so on. The advantage of reverse order is that the carry direction (low → high) is consistent with the growth direction of the array subscript, and the loop is the most natural to write.&lt;/p&gt;
-&lt;h3 id=&#34;data-structures&#34;&gt;Data Structures
-&lt;/h3&gt;&lt;p&gt;__ code_block_0 __&lt;/p&gt;
+&lt;h1 id=&#34;idea-analysis&#34;&gt;Idea Analysis
+&lt;/h1&gt;&lt;h2 id=&#34;core-ideas&#34;&gt;Core Ideas
+&lt;/h2&gt;&lt;p&gt;Save each digit of the large number * * in reverse order * * into the &lt;code&gt;int&#39; array: &lt;/code&gt;d [0]&lt;code&gt;for one digit,&lt;/code&gt;d [1]` for ten digits, and so on. The advantage of reverse order is that the carry direction (low → high) is consistent with the growth direction of the array subscript, and the loop is the most natural to write.&lt;/p&gt;
+&lt;h2 id=&#34;data-structures&#34;&gt;Data Structures
+&lt;/h2&gt;&lt;p&gt;__ code_block_0 __&lt;/p&gt;
 &lt;p&gt;Layout of the number &lt;code&gt;12345&lt;/code&gt; in the array:&lt;/p&gt;
 &lt;table&gt;
   &lt;thead&gt;
@@ -57,8 +56,8 @@
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h3 id=&#34;key-points-of-each-operation&#34;&gt;Key points of each operation
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;key-points-of-each-operation&#34;&gt;Key points of each operation
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;ul&gt;
 &lt;li&gt;Addition * *: add bit by bit, record the carry with the variable &lt;code&gt;carry&lt;/code&gt;, and loop until the highest carry is also processed.&lt;/li&gt;
@@ -80,22 +79,22 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;code-implementation&#34;&gt;Code Implementation
-&lt;/h2&gt;&lt;h3 id=&#34;initialization-and-io&#34;&gt;Initialization and I/O
-&lt;/h3&gt;&lt;p&gt;__ code_block_1 __&lt;/p&gt;
-&lt;h3 id=&#34;addition-and-subtraction&#34;&gt;Addition and Subtraction
-&lt;/h3&gt;&lt;p&gt;__ code_block_2 __&lt;/p&gt;
-&lt;h3 id=&#34;multiplication&#34;&gt;Multiplication
-&lt;/h3&gt;&lt;p&gt;__ code_block_3 __&lt;/p&gt;
-&lt;h3 id=&#34;divide-by-small-integer&#34;&gt;Divide by small integer
-&lt;/h3&gt;&lt;p&gt;__ code_block_4 __&lt;/p&gt;
-&lt;h3 id=&#34;full-demo-program&#34;&gt;Full Demo Program
-&lt;/h3&gt;&lt;p&gt;__ code_block_5 __&lt;/p&gt;
-&lt;h3 id=&#34;application-calculating-factors&#34;&gt;Application: Calculating Factors
-&lt;/h3&gt;&lt;p&gt;__ code_block_6 __&lt;/p&gt;
-&lt;h2 id=&#34;complexity-and-advantages-and-disadvantages&#34;&gt;Complexity and Advantages and Disadvantages
-&lt;/h2&gt;&lt;h3 id=&#34;time-complexity&#34;&gt;Time complexity
-&lt;/h3&gt;&lt;p&gt;Set large digits to $ n $:&lt;/p&gt;
+&lt;h1 id=&#34;code-implementation&#34;&gt;Code Implementation
+&lt;/h1&gt;&lt;h2 id=&#34;initialization-and-io&#34;&gt;Initialization and I/O
+&lt;/h2&gt;&lt;p&gt;__ code_block_1 __&lt;/p&gt;
+&lt;h2 id=&#34;addition-and-subtraction&#34;&gt;Addition and Subtraction
+&lt;/h2&gt;&lt;p&gt;__ code_block_2 __&lt;/p&gt;
+&lt;h2 id=&#34;multiplication&#34;&gt;Multiplication
+&lt;/h2&gt;&lt;p&gt;__ code_block_3 __&lt;/p&gt;
+&lt;h2 id=&#34;divide-by-small-integer&#34;&gt;Divide by small integer
+&lt;/h2&gt;&lt;p&gt;__ code_block_4 __&lt;/p&gt;
+&lt;h2 id=&#34;full-demo-program&#34;&gt;Full Demo Program
+&lt;/h2&gt;&lt;p&gt;__ code_block_5 __&lt;/p&gt;
+&lt;h2 id=&#34;application-calculating-factors&#34;&gt;Application: Calculating Factors
+&lt;/h2&gt;&lt;p&gt;__ code_block_6 __&lt;/p&gt;
+&lt;h1 id=&#34;complexity-and-advantages-and-disadvantages&#34;&gt;Complexity and Advantages and Disadvantages
+&lt;/h1&gt;&lt;h2 id=&#34;time-complexity&#34;&gt;Time complexity
+&lt;/h2&gt;&lt;p&gt;Set large digits to $ n $:&lt;/p&gt;
 &lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
@@ -127,22 +126,22 @@
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h3 id=&#34;spatial-complexity&#34;&gt;Spatial Complexity
-&lt;/h3&gt;&lt;p&gt;$ O (n) $, which is the size of the &lt;code&gt;d [MAXN]&lt;/code&gt; array in the structure.&lt;/p&gt;
-&lt;h3 id=&#34;pros&#34;&gt;Pros
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;spatial-complexity&#34;&gt;Spatial Complexity
+&lt;/h2&gt;&lt;p&gt;$ O (n) $, which is the size of the &lt;code&gt;d [MAXN]&lt;/code&gt; array in the structure.&lt;/p&gt;
+&lt;h2 id=&#34;pros&#34;&gt;Pros
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;The principle is intuitive, fully corresponds to the manual vertical, easy to understand and debug&lt;/li&gt;
 &lt;li&gt;Pure C implementation without any external dependencies&lt;/li&gt;
 &lt;li&gt;Addition and subtraction $ O (n) $, fully adequate for medium size ($\ leq 10 ^ 4$ bits)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;disadvantages&#34;&gt;disadvantages
-&lt;/h3&gt;&lt;ul&gt;
+&lt;h2 id=&#34;disadvantages&#34;&gt;disadvantages
+&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;Multiplication $ O (n ^ 2) $, slower for very large numbers ($ &amp;gt; 10 ^ 5$ bits)&lt;/li&gt;
 &lt;li&gt;Only 1 bit per lattice, the constant factor is too large; it can be changed to 10,000 (4 bits per lattice) to increase the speed by about 4 times&lt;/li&gt;
 &lt;li&gt;Negative numbers are not supported for the time being, additional symbolic bit processing needs to be introduced&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;introduction-to-perpetual-optimization&#34;&gt;Introduction to Perpetual Optimization
-&lt;/h3&gt;&lt;p&gt;Change &lt;code&gt;base&lt;/code&gt; from 10 to 10000 and store 4 decimal digits per array element:&lt;/p&gt;
+&lt;h2 id=&#34;introduction-to-perpetual-optimization&#34;&gt;Introduction to Perpetual Optimization
+&lt;/h2&gt;&lt;p&gt;Change &lt;code&gt;base&lt;/code&gt; from 10 to 10000 and store 4 decimal digits per array element:&lt;/p&gt;
 &lt;p&gt;__ code_block_7 __&lt;/p&gt;
 &lt;p&gt;The logic of addition, subtraction and multiplication is exactly the same, just change all &lt;code&gt;% 10&lt;/code&gt; to &lt;code&gt;% base&lt;/code&gt; and &lt;code&gt;/10&lt;/code&gt; to &lt;code&gt;/base&lt;/code&gt;.&lt;/p&gt;
 </description>
