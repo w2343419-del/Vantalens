@@ -793,17 +793,17 @@
         
         <guid>https://w2343419-del.github.io/WangScape/en/p/state-transition-equations-and-dynamic-programming/</guid>
         <description>&lt;p&gt;In algorithmic problems, we can often see the shadow of dynamic programming, so here is a summary of dynamic programming (DP) and a very important part of it - the state transition equation.&lt;/p&gt;
-&lt;h2 id=&#34;一何为动态规划&#34;&gt;一、何为动态规划
+&lt;h2 id=&#34;i-what-is-dynamic-planning&#34;&gt;I. What is Dynamic Planning
 &lt;/h2&gt;&lt;p&gt;Dynamic Programming (DP) is an algorithmic idea that solves the original problem by decomposing it into sub-problems.&lt;/p&gt;
 &lt;p&gt;Dynamic planning is not some specific data structure, but a way of thinking.&lt;/p&gt;
 &lt;p&gt;DP needs to meet the following two properties:&lt;/p&gt;
-&lt;h3 id=&#34;1-最优子结构&#34;&gt;1. 最优子结构
+&lt;h3 id=&#34;1-optimal-substructure&#34;&gt;1. Optimal Substructure
 &lt;/h3&gt;&lt;p&gt;The optimal solution of the original problem contains the optimal solution of the subproblem.&lt;/p&gt;
-&lt;h3 id=&#34;2-重叠子问题&#34;&gt;2. 重叠子问题
+&lt;h3 id=&#34;2-overlapping-subquestions&#34;&gt;2. Overlapping subquestions
 &lt;/h3&gt;&lt;p&gt;Subquestions are computed iteratively and can be cached to avoid duplication.&lt;/p&gt;
-&lt;h2 id=&#34;二何为状态转移方程&#34;&gt;二、何为状态转移方程
+&lt;h2 id=&#34;ii-what-is-the-state-transition-equation&#34;&gt;II. What is the state transition equation?
 &lt;/h2&gt;&lt;p&gt;To understand the state transition equation, you should first know what a &amp;ldquo;state&amp;rdquo; is.&lt;/p&gt;
-&lt;h3 id=&#34;1-状态&#34;&gt;1. &amp;ldquo;状态&amp;rdquo;
+&lt;h3 id=&#34;1--state&#34;&gt;1- STATE
 &lt;/h3&gt;&lt;p&gt;Status is a description of the problem at a certain stage, usually denoted by &lt;code&gt;dp [i]&lt;/code&gt; or &lt;code&gt;dp [i] [j]&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;For example:&lt;/p&gt;
 &lt;ul&gt;
@@ -811,16 +811,15 @@
 &lt;li&gt;&lt;code&gt;dp [i] [j]&lt;/code&gt; = optimal solution from position i to position j&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;dp [i] [w]&lt;/code&gt; = optimal solution considering the first i items with remaining capacity w&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;2-状态转移方程&#34;&gt;2. 状态转移方程
+&lt;h3 id=&#34;2-state-transition-equation&#34;&gt;2. State transition equation
 &lt;/h3&gt;&lt;p&gt;The state transition equation can be roughly written as:&lt;/p&gt;
 &lt;p&gt;__ code_block_0 __&lt;/p&gt;
 &lt;p&gt;What the state transition equation does is determine what options are available for that step, as well as the sub-problems behind the choices (which can be understood as recursive).&lt;/p&gt;
-&lt;h2 id=&#34;三典型例题&#34;&gt;三、典型例题
-&lt;/h2&gt;&lt;h2 id=&#34;三典型例题-1&#34;&gt;三、典型例题
-&lt;/h2&gt;&lt;h3 id=&#34;例-1线性-dp---爬楼梯&#34;&gt;例 1：线性 DP - 爬楼梯
-&lt;/h3&gt;&lt;h4 id=&#34;问题&#34;&gt;问题
+&lt;h2 id=&#34;iii-typical-examples&#34;&gt;III. Typical Examples
+&lt;/h2&gt;&lt;h3 id=&#34;example-1-linear-dp---climbing-stairs&#34;&gt;Example 1: Linear DP - climbing stairs
+&lt;/h3&gt;&lt;h4 id=&#34;questions&#34;&gt;Questions
 &lt;/h4&gt;&lt;p&gt;How many ways can you climb 1 or 2 steps at a time to reach step n?&lt;/p&gt;
-&lt;h4 id=&#34;思路分析&#34;&gt;思路分析
+&lt;h4 id=&#34;idea-analysis&#34;&gt;Idea Analysis
 &lt;/h4&gt;&lt;ol&gt;
 &lt;li&gt;Define status: &lt;code&gt;dp [i]&lt;/code&gt; = Number of methods to climb to level i&lt;/li&gt;
 &lt;li&gt;Last step analysis: to reach step i, you can only come from step i-1 (step 1) or step i-2 (step 2)&lt;/li&gt;
@@ -832,9 +831,9 @@
 &lt;li&gt;Illustration:&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;__ code_block_1 __&lt;/p&gt;
-&lt;h4 id=&#34;代码实现&#34;&gt;代码实现
+&lt;h4 id=&#34;code-implementation&#34;&gt;Code Implementation
 &lt;/h4&gt;&lt;p&gt;__ code_block_2 __&lt;/p&gt;
-&lt;h4 id=&#34;时间复杂度与优缺点&#34;&gt;时间复杂度与优缺点
+&lt;h4 id=&#34;time-complexity-and-advantages-and-disadvantages&#34;&gt;Time Complexity and Advantages and Disadvantages
 &lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;ul&gt;
@@ -867,10 +866,10 @@
 &lt;li&gt;Values ❌ can only be calculated in one fixed place and need to be recursed multiple times to calculate multiple times&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
-&lt;h3 id=&#34;例-2线性-dp---打家劫舍&#34;&gt;例 2：线性 DP - 打家劫舍
-&lt;/h3&gt;&lt;h4 id=&#34;问题-1&#34;&gt;问题
+&lt;h3 id=&#34;example-2-linear-dp---burglary&#34;&gt;Example 2: Linear DP - Burglary
+&lt;/h3&gt;&lt;h4 id=&#34;questions-1&#34;&gt;Questions
 &lt;/h4&gt;&lt;p&gt;A row of houses can not rob neighbors, ask for the maximum amount. The given array &lt;code&gt;nums&lt;/code&gt; represents the amounts for each house.&lt;/p&gt;
-&lt;h4 id=&#34;思路分析-1&#34;&gt;思路分析
+&lt;h4 id=&#34;idea-analysis-1&#34;&gt;Idea Analysis
 &lt;/h4&gt;&lt;ol&gt;
 &lt;li&gt;Define status: &lt;code&gt;dp [i]&lt;/code&gt; = the maximum amount you can get for grabbing room i&lt;/li&gt;
 &lt;li&gt;Last step analysis: room i, either rob or not rob
@@ -886,9 +885,9 @@
 &lt;li&gt;Illustration:&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;__ code_block_3 __&lt;/p&gt;
-&lt;h4 id=&#34;代码实现-1&#34;&gt;代码实现
+&lt;h4 id=&#34;code-implementation-1&#34;&gt;Code Implementation
 &lt;/h4&gt;&lt;p&gt;__ code_block_4 __&lt;/p&gt;
-&lt;h4 id=&#34;时间复杂度与优缺点-1&#34;&gt;时间复杂度与优缺点
+&lt;h4 id=&#34;time-complexity-and-advantages-and-disadvantages-1&#34;&gt;Time Complexity and Advantages and Disadvantages
 &lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;ul&gt;
@@ -921,10 +920,10 @@
 &lt;li&gt;❌ No direct backtracking on which houses were robbed&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
-&lt;h3 id=&#34;例-3背包-dp---01-背包&#34;&gt;例 3：背包 DP - 0/1 背包
-&lt;/h3&gt;&lt;h4 id=&#34;问题-2&#34;&gt;问题
+&lt;h3 id=&#34;example-3-backpack-dp---01-backpack&#34;&gt;Example 3: Backpack DP - 0/1 Backpack
+&lt;/h3&gt;&lt;h4 id=&#34;questions-2&#34;&gt;Questions
 &lt;/h4&gt;&lt;p&gt;n items, weight &lt;code&gt;w []&lt;/code&gt;, value &lt;code&gt;v []&lt;/code&gt;, back capacity W, for maximum value.&lt;/p&gt;
-&lt;h4 id=&#34;思路分析-2&#34;&gt;思路分析
+&lt;h4 id=&#34;idea-analysis-2&#34;&gt;Idea Analysis
 &lt;/h4&gt;&lt;ol&gt;
 &lt;li&gt;Define status: &lt;code&gt;dp [i] [j]&lt;/code&gt; = maximum value considering the first i items, capacity j&lt;/li&gt;
 &lt;li&gt;Last step analysis: the ith item, put or not put
@@ -941,7 +940,7 @@
 &lt;/ol&gt;
 &lt;p&gt;Items: (w = 2, v = 3), (w = 3, v = 4), (w = 4, v = 5) Back carrying capacity W = 5&lt;/p&gt;
 &lt;p&gt;__ code_block_5 __&lt;/p&gt;
-&lt;h4 id=&#34;代码实现-2&#34;&gt;代码实现
+&lt;h4 id=&#34;code-implementation-2&#34;&gt;Code Implementation
 &lt;/h4&gt;&lt;p&gt;__ code_block_6 __&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -951,7 +950,7 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;__ code_block_7 __&lt;/p&gt;
-&lt;h4 id=&#34;时间复杂度与优缺点-2&#34;&gt;时间复杂度与优缺点
+&lt;h4 id=&#34;time-complexity-and-advantages-and-disadvantages-2&#34;&gt;Time Complexity and Advantages and Disadvantages
 &lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;ul&gt;
@@ -984,10 +983,10 @@
 &lt;li&gt;When the number or capacity of ❌ items is large, the pressure in time and space is high&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
-&lt;h3 id=&#34;例-4序列-dp---最长公共子序列lcs&#34;&gt;例 4：序列 DP - 最长公共子序列（LCS）
-&lt;/h3&gt;&lt;h4 id=&#34;问题-3&#34;&gt;问题
+&lt;h3 id=&#34;example-4-sequence-dp---longest-common-subsequence-lcs&#34;&gt;Example 4: Sequence DP - Longest Common Subsequence (LCS)
+&lt;/h3&gt;&lt;h4 id=&#34;questions-3&#34;&gt;Questions
 &lt;/h4&gt;&lt;p&gt;Two strings for the length of the longest common subsequence. Example: &lt;code&gt;&amp;quot;abcde&amp;quot;&lt;/code&gt; and &lt;code&gt;&amp;quot;ace&amp;quot;&lt;/code&gt; → length is 3 (&lt;code&gt;ace&lt;/code&gt;)&lt;/p&gt;
-&lt;h4 id=&#34;思路分析-3&#34;&gt;思路分析
+&lt;h4 id=&#34;idea-analysis-3&#34;&gt;Idea Analysis
 &lt;/h4&gt;&lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;Define the status: &lt;code&gt;dp [i] [j]&lt;/code&gt; = LCS length of the first i characters of s1 and the first j characters of s2&lt;/p&gt;
@@ -1013,9 +1012,9 @@
 &lt;/ol&gt;
 &lt;p&gt;s1 = &amp;ldquo;abcde&amp;rdquo; s2 = &amp;ldquo;ace&amp;rdquo;&lt;/p&gt;
 &lt;p&gt;__ code_block_8 __&lt;/p&gt;
-&lt;h4 id=&#34;代码实现-3&#34;&gt;代码实现
+&lt;h4 id=&#34;code-implementation-3&#34;&gt;Code Implementation
 &lt;/h4&gt;&lt;p&gt;__ code_block_9 __&lt;/p&gt;
-&lt;h4 id=&#34;时间复杂度与优缺点-3&#34;&gt;时间复杂度与优缺点
+&lt;h4 id=&#34;time-complexity-and-advantages-and-disadvantages-3&#34;&gt;Time Complexity and Advantages and Disadvantages
 &lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;ul&gt;
@@ -1048,10 +1047,10 @@
 &lt;li&gt;When ❌ m and n are large, the spatial pressure is large&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
-&lt;h3 id=&#34;例-5区间-dp---戳气球&#34;&gt;例 5：区间 DP - 戳气球
-&lt;/h3&gt;&lt;h4 id=&#34;问题-4&#34;&gt;问题
+&lt;h3 id=&#34;example-5-interval-dp---poke-balloon&#34;&gt;Example 5: Interval DP - Poke Balloon
+&lt;/h3&gt;&lt;h4 id=&#34;questions-4&#34;&gt;Questions
 &lt;/h4&gt;&lt;p&gt;Poke the balloon i score = &lt;code&gt;nums [i-1] * nums [i] * nums [i +1]&lt;/code&gt; to get the maximum total score.&lt;/p&gt;
-&lt;h4 id=&#34;思路分析-4&#34;&gt;思路分析
+&lt;h4 id=&#34;idea-analysis-4&#34;&gt;Idea Analysis
 &lt;/h4&gt;&lt;ol&gt;
 &lt;li&gt;
 &lt;ul&gt;
@@ -1071,9 +1070,9 @@
 &lt;/ol&gt;
 &lt;p&gt;$ $ dp [i] [j] =\ max_{i &amp;lt; k &amp;lt; j} (dp [i] [k] + dp [k] [j] + nums [i]\ nums [k]\ times nums [j]) $ $&lt;/p&gt;
 &lt;p&gt;where k is the last poked balloon in interval (i, j).&lt;/p&gt;
-&lt;h4 id=&#34;代码实现-4&#34;&gt;代码实现
+&lt;h4 id=&#34;code-implementation-4&#34;&gt;Code Implementation
 &lt;/h4&gt;&lt;p&gt;__ code_block_10 __&lt;/p&gt;
-&lt;h4 id=&#34;时间复杂度与优缺点-4&#34;&gt;时间复杂度与优缺点
+&lt;h4 id=&#34;time-complexity-and-advantages-and-disadvantages-4&#34;&gt;Time Complexity and Advantages and Disadvantages
 &lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;ul&gt;
@@ -1108,7 +1107,7 @@
 &lt;li&gt;❌ Time complexity is cubic&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
-&lt;h2 id=&#34;四dp-模型总结&#34;&gt;四、DP 模型总结
+&lt;h2 id=&#34;iv-dp-model-summary&#34;&gt;IV. DP Model Summary
 &lt;/h2&gt;&lt;p&gt;DP Model Comparison Summary:&lt;/p&gt;
 &lt;table&gt;
   &lt;thead&gt;
@@ -1152,7 +1151,7 @@
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;hr&gt;
-&lt;h2 id=&#34;总结与建议&#34;&gt;总结与建议
+&lt;h2 id=&#34;summary--suggestions&#34;&gt;Summary &amp;amp; Suggestions
 &lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;
 &lt;ul&gt;
