@@ -1220,9 +1220,9 @@ article,
 .wangscape-homepage .ws-hero {
     position: relative;
     isolation: isolate;
-    min-height: clamp(340px, 48vh, 560px);
+    min-height: clamp(280px, 36vh, 420px);
     border-radius: 0;
-    padding: clamp(24px, 3.6vw, 54px) clamp(18px, 4vw, 56px);
+    padding: clamp(20px, 3vw, 40px) clamp(18px, 4vw, 56px);
     background: url('/img/home-hero.png') center 25% / cover no-repeat;
     overflow: hidden;
     box-shadow: none;
@@ -1305,7 +1305,7 @@ article,
 .wangscape-homepage .ws-entry-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0;
+    gap: clamp(12px, 1.5vw, 20px);
 }
 
 .wangscape-homepage .ws-entry-card {
@@ -1552,7 +1552,7 @@ article,
 
 /* 文章详情页 - 诗意排版 */
 .article-page {
-    --article-max-width: 680px;
+    --article-max-width: 850px;
 }
 
 .article-page .main {
