@@ -71,7 +71,7 @@ body {
     max-width: 1680px;
     margin: 0 auto;
     gap: clamp(16px, 2.2vw, 36px);
-    padding: clamp(12px, 2vw, 24px);
+    padding: clamp(8px, 1.2vw, 14px) clamp(12px, 2vw, 24px) clamp(12px, 2vw, 24px);
 }
 
 .sidebar.left,
@@ -94,7 +94,7 @@ body {
     height: 100%;
     min-height: 0;
     margin: 0 auto;
-    padding: clamp(14px, 1.8vw, 24px);
+    padding: clamp(8px, 1.2vw, 14px) clamp(14px, 1.8vw, 24px) clamp(14px, 1.8vw, 24px);
 }
 
 /* 保证文章和卡片中的媒体保持比例，不被拉伸 */
@@ -178,7 +178,7 @@ body {
 .sidebar.left-sidebar header {
     flex-shrink: 0 !important;
     width: 100% !important;
-    padding: 18px 0 10px 0 !important;
+    padding: 10px 0 10px 0 !important;
     overflow: visible !important;
     min-height: 240px !important;
     height: auto !important;
