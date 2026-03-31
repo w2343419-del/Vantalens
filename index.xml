@@ -2595,7 +2595,11 @@ $$dp[i][j] = \max_{i &lt; k &lt; j}(dp[i][k] + dp[k][j] + nums[i] \times nums[k]
         <guid>https://w2343419-del.github.io/WangScape/about/</guid>
         <description>&lt;p&gt;望境 WangScape 是一个以诗意表达为核心的个人数字空间。&lt;/p&gt;
 &lt;p&gt;这里记录算法、思考与日常灵感，也保留文字的温度与节奏。&lt;/p&gt;
+&lt;p&gt;我是谁：一名持续写作与编码的人。&lt;/p&gt;
+&lt;p&gt;为什么做这个网站：把技术学习和诗意表达放在同一个安静空间里。&lt;/p&gt;
 &lt;p&gt;技术栈：Hugo、Go、JavaScript、SCSS。&lt;/p&gt;
+&lt;p&gt;GitHub：&lt;a class=&#34;link&#34; href=&#34;https://github.com/w2343419-del/WangScape&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/w2343419-del/WangScape&lt;/a&gt;&lt;/p&gt;
 </description>
         </item>
         <item>

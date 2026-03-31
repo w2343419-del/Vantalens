@@ -1336,7 +1336,11 @@ __ code_block_2 __&lt;/p&gt;
         <guid>https://w2343419-del.github.io/WangScape/en/about/</guid>
         <description>&lt;p&gt;WangScape is a personal digital space centered on poetic expression.&lt;/p&gt;
 &lt;p&gt;It keeps algorithms, notes, and daily sparks in one quiet place.&lt;/p&gt;
+&lt;p&gt;Who I am: someone who keeps writing and coding.&lt;/p&gt;
+&lt;p&gt;Why I built this site: to place technical learning and poetic expression in one calm space.&lt;/p&gt;
 &lt;p&gt;Tech stack: Hugo, Go, JavaScript, SCSS.&lt;/p&gt;
+&lt;p&gt;GitHub: &lt;a class=&#34;link&#34; href=&#34;https://github.com/w2343419-del/WangScape&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/w2343419-del/WangScape&lt;/a&gt;&lt;/p&gt;
 </description>
         </item>
         <item>
