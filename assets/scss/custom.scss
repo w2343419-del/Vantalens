@@ -2619,6 +2619,8 @@ article,
     display: flex;
     flex-direction: column;
     gap: 12px;
+    opacity: 1;
+    visibility: visible;
 }
 
 .wangscape-homepage .ws-hero-title .cn {
@@ -2648,6 +2650,7 @@ article,
     font-size: clamp(1.18rem, 2vw, 1.56rem);
     color: rgba(255, 241, 247, 0.96);
     letter-spacing: 0.1em;
+    opacity: 1;
 }
 
 .wangscape-homepage .ws-soul-line {
@@ -2655,6 +2658,18 @@ article,
     font-size: clamp(1rem, 1.35vw, 1.14rem);
     color: rgba(255, 237, 244, 0.76);
     letter-spacing: 0.08em;
+    opacity: 1;
+}
+
+.wangscape-homepage .ws-cinema-overlay .ws-tl-title,
+.wangscape-homepage .ws-cinema-overlay .ws-tl-line,
+.wangscape-homepage .ws-cinema-overlay .ws-tl-quote,
+.wangscape-homepage .ws-cinema-overlay .ws-tl-btn {
+    will-change: transform, opacity;
+}
+
+.wangscape-homepage .ws-cinema-overlay .ws-tl-quote {
+    transition: opacity 1s ease, transform 1s ease, filter 1s ease;
 }
 
 .wangscape-homepage .ws-hero-actions {

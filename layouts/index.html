@@ -23,18 +23,18 @@
         <div class="ws-cinema-vignette" aria-hidden="true"></div>
 
         <div class="ws-hero-content ws-cinema-overlay">
-            <h1 class="ws-hero-title title">
+            <h1 class="ws-hero-title ws-tl-title">
                 <span class="cn">{{ if $isZh }}望境{{ else }}WangScape{{ end }}</span>
                 <span class="en">WANGSCAPE</span>
             </h1>
-            <p class="ws-hero-line subtitle">{{ $heroLine }}</p>
-            <p class="ws-soul-line subtitle" data-soul-line></p>
+            <p class="ws-hero-line ws-tl-line">{{ $heroLine }}</p>
+            <p class="ws-soul-line ws-tl-quote" data-soul-line></p>
 
             <div class="ws-hero-actions">
                 {{ range .Translations }}
-                <a class="ws-btn ws-btn-ghost btn" href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
+                <a class="ws-btn ws-btn-ghost ws-tl-btn" href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
                 {{ end }}
-                <button class="ws-btn btn" type="button" data-home-theme-toggle>
+                <button class="ws-btn ws-tl-btn" type="button" data-home-theme-toggle>
                     {{ if $isZh }}切换明暗{{ else }}Theme Mode{{ end }}
                 </button>
             </div>
@@ -265,18 +265,40 @@
         if (!hasGSAP) return;
 
         var tl = window.gsap.timeline({ defaults: { ease: 'power3.out' } });
-        tl.from('.ws-cinema-overlay .title', {
+        tl.fromTo('.ws-cinema-overlay .ws-tl-title', {
             opacity: 0,
             y: 60,
+            filter: 'blur(6px)'
+        }, {
+            opacity: 1,
+            y: 0,
+            filter: 'blur(0px)',
             duration: 2
-        }).from('.ws-cinema-overlay .subtitle', {
+        }).fromTo('.ws-cinema-overlay .ws-tl-quote', {
             opacity: 0,
-            y: 30,
-            duration: 1.5,
-            stagger: 0.2
-        }, '-=1.5').from('.ws-cinema-overlay .btn', {
+            y: 34,
+            scale: 0.985,
+            filter: 'blur(7px)'
+        }, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            filter: 'blur(0px)',
+            duration: 2.1,
+            ease: 'sine.out'
+        }, '+=0.4').fromTo('.ws-cinema-overlay .ws-tl-btn', {
+            filter: 'blur(5px)'
+        }, {
+            opacity: 1,
+            y: 0,
+            filter: 'blur(0px)',
+            duration: 1.6
+        }, '-=0.6').fromTo('.ws-cinema-overlay .ws-tl-btn', {
             opacity: 0,
             y: 16,
+        }, {
+            opacity: 1,
+            y: 0,
             duration: 1.5,
             stagger: 0.3
         }, '-=1.0').from('.ws-entry-card', {
