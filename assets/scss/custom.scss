@@ -66,19 +66,31 @@ body {
     min-height: 100dvh;
     height: 100dvh;
     align-items: stretch;
+    justify-content: center;
+    width: 100%;
+    max-width: 1680px;
+    margin: 0 auto;
     gap: clamp(16px, 2.2vw, 36px);
     padding: clamp(12px, 2vw, 24px);
 }
 
 .sidebar.left,
 .sidebar.left-sidebar {
-    width: clamp(220px, 20vw, 280px) !important;
+    width: clamp(220px, 18vw, 270px) !important;
     height: 100% !important;
 }
 
+.sidebar.right,
+.sidebar.right-sidebar {
+    width: clamp(240px, 20vw, 320px);
+    flex: 0 0 auto;
+}
+
 .main {
+    flex: 1 1 900px;
     width: 100%;
     max-width: 980px;
+    min-width: 760px;
     height: 100%;
     min-height: 0;
     margin: 0 auto;
@@ -820,6 +832,22 @@ article .post-content,
     .sidebar.right,
     .sidebar.right-sidebar {
         display: none;
+    }
+
+    .main {
+        min-width: 0;
+    }
+}
+
+@media screen and (max-width: 1600px) {
+    .sidebar.right,
+    .sidebar.right-sidebar {
+        display: none !important;
+    }
+
+    .main {
+        max-width: 1100px;
+        min-width: 0;
     }
 }
 
