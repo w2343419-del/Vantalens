@@ -1,7 +1,7 @@
 # 基础全局设置
 mainSections = ["post"]
 rssFullContent = true
-favicon = "favicon.png"
+favicon = "img/favicon.png"
 
 # GitHub 评论（Issues）仓库，格式：owner/repo
 githubCommentsRepo = "w2343419-del/WangScape"

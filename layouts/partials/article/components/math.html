@@ -1,9 +1,9 @@
 {{- partial "helper/external" (dict "Context" . "Namespace" "KaTeX") -}}
 <script>
     const fallbackKatexAssets = {
-        css: "https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.9/katex.min.css",
-        js: "https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.9/katex.min.js",
-        autoRender: "https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"
+        css: "https://unpkg.com/katex@0.16.9/dist/katex.min.css",
+        js: "https://unpkg.com/katex@0.16.9/dist/katex.min.js",
+        autoRender: "https://unpkg.com/katex@0.16.9/dist/contrib/auto-render.min.js"
     };
 
     const loadScript = (src) => new Promise((resolve, reject) => {
