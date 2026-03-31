@@ -157,10 +157,10 @@ body {
 .sidebar.left-sidebar {
     width: 260px !important;
     flex-shrink: 0 !important;
-    height: 100% !important;
+    height: 100dvh !important;
     display: flex !important;
     flex-direction: column !important;
-    overflow-y: auto !important;
+    overflow-y: hidden !important;
     overflow-x: hidden !important;
     position: relative !important;
     padding-bottom: 0px !important;
@@ -180,7 +180,7 @@ body {
     width: 100% !important;
     padding: 18px 0 10px 0 !important;
     overflow: visible !important;
-    min-height: 270px !important;
+    min-height: 240px !important;
     height: auto !important;
 }
 
@@ -315,11 +315,12 @@ body {
 
 /* ===== 主菜单 ===== */
 #main-menu {
-    flex: 0 1 auto !important;
+    flex: 1 1 auto !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
-    height: calc(100vh - 360px) !important;
-    max-height: calc(100vh - 360px) !important;
+    min-height: 0 !important;
+    height: auto !important;
+    max-height: none !important;
     list-style: none !important;
     margin: 0 !important;
     padding: 0 !important;
@@ -402,17 +403,17 @@ body {
 .sidebar-footer-controls {
     flex-shrink: 0 !important;
     margin-top: auto !important;
-    padding: 5px 0 !important;
+    padding: 6px 0 10px 0 !important;
     border: none !important;
     display: flex !important;
     flex-direction: column !important;
     gap: 5px !important;
     align-items: stretch !important;
     justify-content: flex-start !important;
-    height: 95px !important;
-    min-height: 95px !important;
-    max-height: 95px !important;
-    overflow: hidden !important;
+    height: auto !important;
+    min-height: 86px !important;
+    max-height: none !important;
+    overflow: visible !important;
     box-sizing: border-box !important;
 }
 
