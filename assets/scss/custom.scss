@@ -97,7 +97,8 @@ body {
 }
 
 /* ===== 左侧边栏 ===== */
-.sidebar.left {
+.sidebar.left,
+.sidebar.left-sidebar {
     width: 260px !important;
     flex-shrink: 0 !important;
     height: 100% !important;
@@ -112,11 +113,13 @@ body {
     contain: layout style paint !important;
 }
 
-.sidebar.left::-webkit-scrollbar {
+.sidebar.left::-webkit-scrollbar,
+.sidebar.left-sidebar::-webkit-scrollbar {
     display: none !important;
 }
 
-.sidebar.left header {
+.sidebar.left header,
+.sidebar.left-sidebar header {
     flex-shrink: 0 !important;
     width: 100% !important;
     padding: 20px 0 !important;
@@ -124,7 +127,8 @@ body {
     height: 230px !important;
 }
 
-.sidebar.left .site-info {
+.sidebar.left .site-info,
+.sidebar.left-sidebar .site-info {
     flex-shrink: 0 !important;
     width: 100% !important;
     text-align: center !important;
@@ -132,7 +136,9 @@ body {
 }
 
 .sidebar.left .site-info h1,
-.sidebar.left .site-info h2 {
+.sidebar.left .site-info h2,
+.sidebar.left-sidebar .site-info h1,
+.sidebar.left-sidebar .site-info h2 {
     margin: 10px 0 !important;
     padding: 0 !important;
     display: block !important;
@@ -205,7 +211,8 @@ body {
 }
 
 /* ===== 站点信息 ===== */
-.sidebar.left .site-info {
+.sidebar.left .site-info,
+.sidebar.left-sidebar .site-info {
     flex-shrink: 0 !important;
     width: 100% !important;
     text-align: center !important;
@@ -761,11 +768,13 @@ article .post-content,
         padding: 10px 20px;
     }
 
-    .sidebar.left {
+    .sidebar.left,
+    .sidebar.left-sidebar {
         width: 220px;
     }
 
-    .sidebar.right {
+    .sidebar.right,
+    .sidebar.right-sidebar {
         display: none;
     }
 }
@@ -777,7 +786,8 @@ article .post-content,
         padding: 10px;
     }
 
-    .sidebar.left {
+    .sidebar.left,
+    .sidebar.left-sidebar {
         position: fixed;
         bottom: 0;
         left: 0;
@@ -795,7 +805,11 @@ article .post-content,
 
     .sidebar.left .site-info,
     .sidebar.left .site-avatar,
-    .sidebar.left .sidebar-footer-controls {
+    .sidebar.left .sidebar-footer-controls,
+    .sidebar.left-sidebar .site-info,
+    .sidebar.left-sidebar .site-avatar,
+    .sidebar.left-sidebar .sidebar-footer-controls,
+    .sidebar.left-sidebar header {
         display: none;
     }
 
@@ -830,6 +844,10 @@ article .post-content,
         padding-bottom: 80px;
         padding-top: 20px;
         overflow-y: auto !important;
+    }
+
+    .sidebar.right-sidebar {
+        display: none !important;
     }
 }
 
