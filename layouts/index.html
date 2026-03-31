@@ -52,10 +52,6 @@
         </a>
     </section>
 
-    <section class="ws-about-link-wrap">
-        <a class="ws-about-link" href="{{ "/page/about/" | relLangURL }}">{{ if $isZh }}关于 WangScape{{ else }}About WangScape{{ end }}</a>
-    </section>
-
     <section class="ws-recent">
         <div class="ws-recent-head">
             <h2>{{ if $isZh }}最近更新{{ else }}Recent Writings{{ end }}</h2>
@@ -75,11 +71,24 @@
         </div>
     </section>
 
+    <section class="ws-about-link-wrap">
+        <a class="ws-about-link" href="{{ "/page/about/" | relLangURL }}">{{ if $isZh }}关于 WangScape{{ else }}About WangScape{{ end }}</a>
+    </section>
+
     {{ partial "footer/footer" . }}
 </section>
 
 <script>
+// 创建全页樱花飘落动画
 (function () {
+    var petalContainer = document.createElement('div');
+    petalContainer.className = 'ws-global-petals';
+    for (var i = 0; i < 10; i++) {
+        var petal = document.createElement('span');
+        petalContainer.appendChild(petal);
+    }
+    document.body.appendChild(petalContainer);
+
     var toggleBtn = document.querySelector('[data-home-theme-toggle]');
     if (!toggleBtn) return;
 

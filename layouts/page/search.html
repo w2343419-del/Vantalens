@@ -1,0 +1,46 @@
+{{ define "body-class" }}template-search ws-search-page{{ end }}
+
+{{ define "head" }}
+    {{- with .OutputFormats.Get "json" -}} 
+        <link rel="preload" href="{{ .RelPermalink }}" as="fetch" crossorigin="anonymous">
+    {{- end -}}
+{{ end }}
+
+{{ define "main" }}
+<section class="ws-search-wrap">
+    <header class="ws-search-header">
+        <h1>{{ .Title }}</h1>
+        <p>{{ if eq .Site.Language.Lang "zh-cn" }}快速查找你想要的内容{{ else }}Find exactly what you need{{ end }}</p>
+    </header>
+
+    <form action="{{ .RelPermalink }}" class="ws-search-form" {{ with .OutputFormats.Get "json" }}data-json="{{ .RelPermalink }}"{{ end }}>
+        <div class="ws-search-input-wrap">
+            <input 
+                type="text"
+                name="keyword" 
+                class="ws-search-input"
+                placeholder="{{ if eq .Site.Language.Lang "zh-cn" }}输入关键词...{{ else }}Type keywords...{{ end }}" 
+                autocomplete="off"
+            />
+            <button type="submit" class="ws-search-btn">
+                {{ partial "helper/icon" "search" }}
+            </button>
+        </div>
+    </form>
+
+    <div class="ws-search-result" id="search-result">
+        <h3 class="ws-search-result-title"></h3>
+        <div class="ws-search-result-list article-list--compact"></div>
+    </div>
+</section>
+
+<script>
+    window.searchResultTitleTemplate = "{{ if eq .Site.Language.Lang "zh-cn" }}搜索结果{{ else }}Search Results{{ end }}"
+</script>
+
+{{- $opts := dict "minify" hugo.IsProduction "JSXFactory" "createElement" -}}
+{{- $searchScript := resources.Get "ts/search.tsx" | js.Build $opts -}}
+<script type="text/javascript" src="{{ $searchScript.RelPermalink }}" defer></script>
+
+{{ partialCached "footer/footer" . }}
+{{ end }}

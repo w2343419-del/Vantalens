@@ -1,0 +1,55 @@
+{{ define "body-class" }}template-archives ws-archives-page{{ end }}
+
+{{ define "main" }}
+<section class="ws-archives-wrap">
+    <header class="ws-archives-header">
+        <h1>{{ .Title }}</h1>
+        <p>{{ if eq .Site.Language.Lang "zh-cn" }}按时间顺序阅读所有创作{{ else }}All writings, organized by time{{ end }}</p>
+    </header>
+
+    {{- $taxonomy := $.Site.GetPage "taxonomyTerm" "categories" -}}
+    {{- $terms := $taxonomy.Pages -}}
+    {{ if $terms }}
+    <section class="ws-categories-wrap">
+        <h2 class="section-title">{{ if eq .Site.Language.Lang "zh-cn" }}分类{{ else }}Categories{{ end }}</h2>
+        <div class="ws-categories-grid">
+            {{ range $terms }}
+                <a href="{{ .RelPermalink }}" class="ws-category-tag">
+                    <span>{{ .Title }}</span>
+                    <em>{{ len .Pages }}</em>
+                </a>
+            {{ end }}
+        </div>
+    </section>
+    {{ end }}
+
+    <section class="ws-timeline">
+        {{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
+        {{ $filtered := where $pages "Params.hidden" "!=" true }}
+
+        {{ range $filtered.GroupByDate "2006" }}
+        {{ $id := lower (replace .Key " " "-") }}
+        
+        <div class="ws-timeline-group" id="{{ $id }}">
+            <h2 class="ws-timeline-year">
+                <a href="{{ $.RelPermalink }}#{{ $id }}">{{ .Key }}</a>
+            </h2>
+            <div class="ws-timeline-items">
+                {{ range .Pages }}
+                <article class="ws-timeline-item">
+                    <div class="ws-timeline-dot"></div>
+                    <a href="{{ .RelPermalink }}" class="ws-timeline-link">
+                        <time>{{ .Date.Format "01.02" }}</time>
+                        <h3>{{ .Title }}</h3>
+                        <p>{{ .Summary | plainify | truncate 120 }}</p>
+                    </a>
+                </article>
+                {{ end }}
+            </div>
+        </div>
+        {{ end }}
+    </section>
+</section>
+
+{{ partialCached "footer/footer" . }}
+{{ end }}
