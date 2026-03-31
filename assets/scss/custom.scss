@@ -2673,11 +2673,15 @@ article,
 }
 
 .wangscape-homepage .ws-hero-actions {
-    margin-top: 28px;
+    margin-top: 0;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-end;
     gap: 12px;
+    position: absolute;
+    top: clamp(14px, 3vh, 28px);
+    right: clamp(14px, 2.8vw, 34px);
+    z-index: 6;
 }
 
 .wangscape-homepage .ws-hero-actions .btn,
@@ -2701,6 +2705,45 @@ article,
     background: rgba(255, 255, 255, 0.14);
     border-color: rgba(255, 255, 255, 0.54);
     transform: translateY(-2px);
+}
+
+[data-scheme="light"] .wangscape-homepage .ws-cinema-vignette {
+    background: radial-gradient(circle at center, rgba(42, 24, 30, 0.12) 0%, rgba(42, 24, 30, 0.42) 100%);
+}
+
+[data-scheme="light"] .wangscape-homepage .ws-cinema-mist {
+    background:
+        radial-gradient(85% 60% at 22% 28%, rgba(255, 244, 249, 0.16), transparent 70%),
+        radial-gradient(70% 48% at 74% 66%, rgba(240, 200, 214, 0.2), transparent 74%);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+[data-scheme="light"] .wangscape-homepage .ws-cinema-overlay {
+    color: rgba(255, 246, 250, 0.95);
+}
+
+[data-scheme="light"] .wangscape-homepage .ws-hero-line {
+    color: rgba(255, 244, 248, 0.92);
+}
+
+[data-scheme="light"] .wangscape-homepage .ws-soul-line {
+    color: rgba(255, 237, 244, 0.88);
+}
+
+[data-scheme="light"] .wangscape-homepage .ws-hero-actions .btn,
+[data-scheme="light"] .wangscape-homepage .ws-btn,
+[data-scheme="light"] .wangscape-homepage .ws-btn-ghost {
+    color: rgba(255, 246, 250, 0.98);
+    border-color: rgba(255, 255, 255, 0.62);
+    background: rgba(56, 32, 44, 0.16);
+}
+
+[data-scheme="light"] .wangscape-homepage .ws-hero-actions .btn:hover,
+[data-scheme="light"] .wangscape-homepage .ws-btn:hover,
+[data-scheme="light"] .wangscape-homepage .ws-btn-ghost:hover {
+    background: rgba(56, 32, 44, 0.24);
+    border-color: rgba(255, 255, 255, 0.78);
 }
 
 .wangscape-homepage .ws-entry-grid {
@@ -2776,5 +2819,11 @@ article,
     .wangscape-homepage .ws-btn-ghost {
         font-size: 0.95rem;
         padding: 10px 22px;
+    }
+
+    .wangscape-homepage .ws-hero-actions {
+        top: 14px;
+        right: 14px;
+        gap: 8px;
     }
 }
