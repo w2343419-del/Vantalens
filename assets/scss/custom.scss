@@ -2708,7 +2708,7 @@ article,
     flex-wrap: wrap;
     justify-content: flex-end;
     gap: 12px;
-    position: fixed;
+    position: absolute;
     top: clamp(14px, 3vh, 28px);
     right: clamp(14px, 2.8vw, 34px);
     z-index: 60;
