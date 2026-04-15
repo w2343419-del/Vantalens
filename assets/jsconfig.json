@@ -1,9 +1,10 @@
 {
  "compilerOptions": {
   "baseUrl": ".",
+    "ignoreDeprecations": "6.0",
   "paths": {
    "*": [
-    "..\\_vendor\\github.com\\CaiJimmy\\hugo-theme-stack\\v3\\assets\\*"
+    "..\\themes\\stack\\assets\\*"
    ]
   }
  }

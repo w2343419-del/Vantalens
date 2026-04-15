@@ -1,0 +1,38 @@
+# TalentWriter .gitignore
+
+# Binaries (do not upload)
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Build cache
+.go-cache/
+go-build-*
+
+# Logs
+*.log
+*.err
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# System
+.DS_Store
+Thumbs.db
+
+# Environment (do not upload)
+.env
+*.env
+
+# Data (user generated)
+data/comments/
+config/
+
+# Generated site output
+public/
+.hugo_build.lock
+
