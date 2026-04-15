@@ -41,7 +41,7 @@
 
     {{ partialCached "footer/footer" . }}
 
-    {{ partialCached "article/components/photoswipe" . }}
+    {{/* Temporarily disable PhotoSwipe due incompatible external data shape */}}
     {{ partialCached "article/components/mermaid" . }}
 {{ end }}
 

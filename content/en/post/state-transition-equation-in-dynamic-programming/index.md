@@ -1,18 +1,20 @@
 ---
-title: "State Transition Equations and Dynamic Programming"
-date: 2026-03-02T13:57:00+08:00
-description: "Summary of Dynamic Programming and State Transition Equations, and Common Models"
+pinned: false
 tags:
     - Dynamic programming
     - - State transition equation
 categories:
     - Algorithm
-draft: false
+title: "State Transition Equations and Dynamic Programming"
+description: "Summary of Dynamic Programming and State Transition Equations, and Common Models"
+date: 2026-03-02T13:57:00+08:00
+image: ""
 math: true
-comments: true
+license: ""
 hidden: false
-pinned: false
-ws_sync_zh_hash: "885dd1c71fb609cb69d1a0ef22aac03ad0e2ce06429c93e0d44881297fd6691e"
+comments: true
+draft: false
+ws_sync_zh_hash: "5a77da65199529fb1e597b01febb1705e582b05f2ed53ade375a784fa04e3109"
 ---
 
 In algorithmic problems, we can often see the shadow of dynamic programming, so here is a summary of dynamic programming (DP) and a very important part of it - the state transition equation.
@@ -124,11 +126,11 @@ __ code_block_4 __
 * * Space complexity * *: $ O (n) $, optimized for $ O (1) $ (only the first two are retained)
 
 * * Benefits * *:
-- ✅ Similar to climbing stairs, clear thinking
-- ✅ Optimizes space to O (1)
+- Similar to climbing stairs, clear thinking
+- Optimizes space to O (1)
 
 * * Cons * *:
-- ❌ No direct backtracking on which houses were robbed
+- No direct backtracking on which houses were robbed
 
 ---
 

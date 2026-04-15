@@ -1,10 +1,10 @@
-# WangScape (Hugo Blog + WSwriter)
+# Vantalens (Hugo Blog + TalentWriter)
 
 [![Hugo](https://img.shields.io/badge/Hugo-Extended-blueviolet?style=flat-square)](https://gohugo.io/)
 [![Go](https://img.shields.io/badge/Go-1.21+-00ADD8?style=flat-square)](https://golang.org/)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
 
-WangScape is a bilingual Hugo blog project with a local management tool, WSwriter (Go).
+Vantalens is a bilingual Hugo blog project with a local management tool, TalentWriter (Go).
 
 - Hosting: GitHub Pages
 - Analytics: Busuanzi
@@ -19,18 +19,18 @@ WangScape is a bilingual Hugo blog project with a local management tool, WSwrite
 
 ## Quick Start
 
-### 1) Run WSwriter
+### 1) Run TalentWriter
 
 Windows:
 
 ```bash
-WSwriter.exe
+TalentWriter.exe
 ```
 
 Or run from source:
 
 ```bash
-go run WSwriter.go
+go run TalentWriter.go
 ```
 
 Open http://127.0.0.1:8080.
@@ -41,17 +41,17 @@ Open http://127.0.0.1:8080.
 hugo server
 ```
 
-Open http://localhost:1313/WangScape/.
+Open http://localhost:1313/Vantalens/.
 
 ### 3) Build the executable
 
 ```bash
-go build -o WSwriter.exe WSwriter.go
+go build -o TalentWriter.exe TalentWriter.go
 ```
 
 ## Login and Authorization
 
-WSwriter uses local backend auth with JWT:
+TalentWriter uses local backend auth with JWT:
 
 - Admin credentials are configured via .env (ADMIN_USERNAME / ADMIN_PASSWORD)
 - JWT secret is configured via JWT_SECRET
@@ -69,7 +69,7 @@ Configuration files:
 ## Analytics
 
 - Public site analytics: Busuanzi script
-- Admin dashboard analytics: aggregated by WSwriter (includes visitor IP)
+- Admin dashboard analytics: aggregated by TalentWriter (includes visitor IP)
 
 See [BUSUANZI_SETUP.md](BUSUANZI_SETUP.md) for details.
 
@@ -81,8 +81,8 @@ assets/                # Frontend assets (JS/SCSS)
 config/                # Hugo and comment config
 layouts/               # Template overrides
 static/                # Static files
-WSwriter.go            # WSwriter source code
-WSwriter.exe           # Windows executable
+TalentWriter.go            # TalentWriter source code
+TalentWriter.exe           # Windows executable
 ```
 
 ## Deployment

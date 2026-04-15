@@ -1,0 +1,365 @@
+{{ define "body-class" }}wangscape-homepage{{ end }}
+
+{{ define "left-sidebar" }}{{ end }}
+
+{{ define "right-sidebar" }}{{ end }}
+
+{{ define "main" }}
+{{ $isZh := eq .Site.Language.Lang "zh-cn" }}
+{{ $heroLine := cond $isZh "偏我去时花满楼，偏我来时不逢春" "When I left, flowers filled the tower. When I returned, spring was gone." }}
+{{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
+{{ $filtered := where $pages "Params.hidden" "!=" true }}
+{{ $recent := first 6 ($filtered.ByDate.Reverse) }}
+{{ $postPage := .Site.GetPage "/post" }}
+{{ $searchPage := .Site.GetPage "/page/search" }}
+{{ $archivesPage := .Site.GetPage "/page/archives" }}
+{{ $linksPage := .Site.GetPage "/page/links" }}
+{{ $aboutPage := .Site.GetPage "/page/about" }}
+
+<section class="ws-home">
+    <section class="ws-hero ws-cinema-hero">
+        <div id="ws-cinema-scene" class="ws-cinema-scene" aria-hidden="true"></div>
+        <div class="ws-cinema-mist" aria-hidden="true"></div>
+        <div class="ws-cinema-vignette" aria-hidden="true"></div>
+        <div class="ws-hero-actions">
+            {{ range .Translations }}
+            <a class="ws-btn ws-btn-ghost" href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
+            {{ end }}
+            <button class="ws-btn" type="button" data-home-theme-toggle>
+                {{ if $isZh }}切换明暗{{ else }}Theme Mode{{ end }}
+            </button>
+        </div>
+
+        <div class="ws-hero-content ws-cinema-overlay">
+            <h1 class="ws-hero-title ws-tl-title">
+                <span class="cn">{{ if $isZh }}望境{{ else }}WangScape{{ end }}</span>
+                {{ if $isZh }}
+                <span class="en">WANGSCAPE</span>
+                {{ end }}
+            </h1>
+            <p class="ws-hero-line ws-tl-line">{{ $heroLine }}</p>
+            <p class="ws-soul-line ws-tl-quote" data-soul-line></p>
+        </div>
+    </section>
+
+    <section class="ws-entry-grid" aria-label="Main Sections">
+        <a class="ws-entry-card" href="{{ $postPage.Permalink }}">
+            <h3>{{ if $isZh }}文章{{ else }}Posts{{ end }}</h3>
+            <p>{{ if $isZh }}最近：{{ else }}Recent: {{ end }}{{ with index $recent 0 }}{{ .Title }}{{ else }}{{ if $isZh }}暂无文章{{ else }}No posts yet{{ end }}{{ end }}</p>
+        </a>
+        <a class="ws-entry-card" href="{{ $searchPage.Permalink }}">
+            <h3>{{ if $isZh }}搜索{{ else }}Search{{ end }}</h3>
+            <p>{{ if $isZh }}标题、标签、摘要一键检索{{ else }}Find by title, tags, and snippets{{ end }}</p>
+        </a>
+        <a class="ws-entry-card" href="{{ $archivesPage.Permalink }}">
+            <h3>{{ if $isZh }}归档{{ else }}Archive{{ end }}</h3>
+            <p>{{ if $isZh }}沿时间线回看写作轨迹{{ else }}Read along a timeline of writing{{ end }}</p>
+        </a>
+        <a class="ws-entry-card" href="{{ $linksPage.Permalink }}">
+            <h3>{{ if $isZh }}友链{{ else }}Friends{{ end }}</h3>
+            <p>{{ if $isZh }}同频站点与长期收藏{{ else }}Resonant sites and long-term picks{{ end }}</p>
+        </a>
+    </section>
+
+    <section class="ws-recent">
+        <div class="ws-recent-head">
+            <h2>{{ if $isZh }}最近更新{{ else }}Recent Writings{{ end }}</h2>
+            <a href="{{ $postPage.Permalink }}">{{ if $isZh }}查看全部{{ else }}View all{{ end }}</a>
+        </div>
+
+        <div class="ws-recent-grid">
+            {{ range $recent }}
+            <article class="ws-post-card">
+                <a href="{{ .RelPermalink }}">
+                    <h3>{{ .Title }}</h3>
+                    <p>{{ .Summary | plainify | truncate 88 }}</p>
+                    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
+                </a>
+            </article>
+            {{ end }}
+        </div>
+    </section>
+
+    <section class="ws-about-link-wrap">
+        <a class="ws-about-link" href="{{ $aboutPage.Permalink }}">{{ if $isZh }}关于 WangScape{{ else }}About WangScape{{ end }}</a>
+    </section>
+
+    {{ partial "footer/footer" . }}
+</section>
+
+<script>
+// Cinematic scene + timeline + theme toggle
+(function () {
+    var soulLine = document.querySelector('[data-soul-line]');
+    if (soulLine) {
+        var quotes = [
+            '人间忽晚，山河已秋',
+            '夜来风雨声，花落知多少',
+            '风定落花深，帘外拥红堆雪'
+        ];
+        soulLine.textContent = quotes[Math.floor(Math.random() * quotes.length)];
+    }
+
+    var sceneEl = document.getElementById('ws-cinema-scene');
+    var hasThree = typeof window.THREE !== 'undefined';
+    var hasGSAP = typeof window.gsap !== 'undefined';
+
+    function initScene() {
+        if (!sceneEl || !hasThree) return;
+
+        var THREE = window.THREE;
+        var scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0xf7c6c7, 0.15);
+
+        var camera = new THREE.PerspectiveCamera(55, 1, 0.1, 50);
+        camera.position.set(0, 0.5, 6);
+
+        var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+        renderer.setSize(sceneEl.clientWidth, sceneEl.clientHeight);
+        renderer.setClearColor(0x000000, 0);
+        sceneEl.appendChild(renderer.domElement);
+
+        var bgMaterial = new THREE.ShaderMaterial({
+            uniforms: {
+                uTime: { value: 0 }
+            },
+            vertexShader: [
+                'varying vec2 vUv;',
+                'void main() {',
+                '  vUv = uv;',
+                '  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);',
+                '}'
+            ].join('\n'),
+            fragmentShader: [
+                'uniform float uTime;',
+                'varying vec2 vUv;',
+                'void main() {',
+                '  vec3 top = vec3(0.97, 0.78, 0.79);',
+                '  vec3 bottom = vec3(0.88, 0.70, 0.75);',
+                '  vec3 color = mix(top, bottom, vUv.y);',
+                '  color *= 0.95 + 0.05 * sin(uTime * 0.35);',
+                '  gl_FragColor = vec4(color, 0.96);',
+                '}'
+            ].join('\n'),
+            depthWrite: false,
+            depthTest: false
+        });
+
+        var bg = new THREE.Mesh(new THREE.PlaneGeometry(24, 14), bgMaterial);
+        bg.position.set(0, 0, -8);
+        scene.add(bg);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.82));
+        var keyLight = new THREE.DirectionalLight(0xffd4da, 0.7);
+        keyLight.position.set(2, 3, 4);
+        scene.add(keyLight);
+
+        var petalCount = 1200;
+        var petalGeo = new THREE.PlaneGeometry(0.1, 0.16);
+        var petalMat = new THREE.MeshBasicMaterial({
+            color: 0xf7c7d6,
+            transparent: true,
+            opacity: 0.85,
+            side: THREE.DoubleSide,
+            depthWrite: false
+        });
+        var petals = new THREE.InstancedMesh(petalGeo, petalMat, petalCount);
+        scene.add(petals);
+
+        var dummy = new THREE.Object3D();
+        var particles = new Array(petalCount);
+
+        function wind(x, y, t) {
+            return Math.sin(x * 0.3 + t + y * 0.08) * 0.2;
+        }
+
+        function resetPetal(i, topSpawn) {
+            particles[i] = {
+                x: (Math.random() - 0.5) * 11,
+                y: topSpawn ? (Math.random() * 2 + 3.6) : ((Math.random() - 0.5) * 7),
+                z: (Math.random() - 0.5) * 8,
+                vx: (Math.random() - 0.5) * 0.004,
+                vy: Math.random() * 0.012 + 0.004,
+                rotation: Math.random() * Math.PI * 2,
+                life: Math.random() * 1.2 + 0.2,
+                scale: Math.random() * 1.15 + 0.7
+            };
+        }
+
+        for (var i = 0; i < petalCount; i++) {
+            resetPetal(i, false);
+        }
+
+        function updatePetals(t) {
+            for (var i = 0; i < petalCount; i++) {
+                var p = particles[i];
+                p.y -= p.vy;
+                p.x += p.vx + wind(p.x, p.y, t) * 0.008;
+                p.rotation += 0.01;
+                p.life -= 0.0026;
+
+                if (p.y < -4.2 || p.life <= 0 || Math.abs(p.x) > 7.5) {
+                    resetPetal(i, true);
+                    p = particles[i];
+                }
+
+                dummy.position.set(p.x, p.y, p.z);
+                dummy.rotation.set(0.2 * Math.sin(p.rotation * 0.45), p.rotation, 0.2 * Math.cos(p.rotation * 0.3));
+                dummy.scale.setScalar(p.scale);
+                dummy.updateMatrix();
+                petals.setMatrixAt(i, dummy.matrix);
+            }
+            petals.instanceMatrix.needsUpdate = true;
+        }
+
+        function resize() {
+            if (!sceneEl) return;
+            var width = sceneEl.clientWidth;
+            var height = sceneEl.clientHeight;
+            if (!width || !height) return;
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+            renderer.setSize(width, height);
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        if (hasGSAP) {
+            window.gsap.to(camera.position, {
+                z: 4,
+                duration: 6,
+                ease: 'power2.inOut'
+            });
+
+            window.gsap.to(camera.position, {
+                y: 0.6,
+                duration: 4,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            });
+        }
+
+        document.addEventListener('mousemove', function (e) {
+            var tx = (e.clientX / window.innerWidth - 0.5) * 0.18;
+            var ty = (e.clientY / window.innerHeight - 0.5) * 0.12;
+            camera.position.x += (tx - camera.position.x) * 0.03;
+            camera.lookAt(0, ty, 0);
+        });
+
+        function render(time) {
+            var t = time * 0.001;
+            bgMaterial.uniforms.uTime.value = t;
+            updatePetals(t);
+            renderer.render(scene, camera);
+            requestAnimationFrame(render);
+        }
+
+        requestAnimationFrame(render);
+    }
+
+    function initTimeline() {
+        if (!hasGSAP) return;
+
+        var tl = window.gsap.timeline({ defaults: { ease: 'power3.out' } });
+        tl.fromTo('.ws-cinema-overlay .ws-tl-title', {
+            opacity: 0,
+            y: 44,
+            filter: 'blur(6px)'
+        }, {
+            opacity: 1,
+            y: 0,
+            filter: 'blur(0px)',
+            duration: 1.35
+        }).fromTo('.ws-cinema-overlay .ws-tl-line', {
+            opacity: 0,
+            y: 22,
+            filter: 'blur(4px)'
+        }, {
+            opacity: 1,
+            y: 0,
+            filter: 'blur(0px)',
+            duration: 1.05
+        }, '-=0.78').fromTo('.ws-cinema-overlay .ws-tl-quote', {
+            opacity: 0,
+            y: 28,
+            scale: 0.99,
+            filter: 'blur(6px)'
+        }, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            filter: 'blur(0px)',
+            duration: 1.35,
+            ease: 'sine.out'
+        }, '+=0.15').from('.ws-entry-card', {
+            opacity: 0,
+            y: 16,
+            duration: 1.1,
+            stagger: 0.14
+        }, '-=0.12').from('.ws-recent', {
+            opacity: 0,
+            y: 16,
+            duration: 1.1
+        }, '-=0.68');
+    }
+
+    initScene();
+    initTimeline();
+
+    var heroContent = document.querySelector('.ws-hero-content');
+    document.addEventListener('mousemove', function (e) {
+        if (!heroContent) return;
+        var x = (e.clientX / window.innerWidth - 0.5) * 8;
+        var y = (e.clientY / window.innerHeight - 0.5) * 8;
+        heroContent.style.transform = 'translate(' + x.toFixed(2) + 'px, ' + y.toFixed(2) + 'px)';
+    });
+
+    var toggleBtn = document.querySelector('[data-home-theme-toggle]');
+    if (!toggleBtn) return;
+
+    var key = 'StackColorScheme';
+    var order = ['light', 'dark'];
+
+    function resolveScheme(mode) {
+        if (mode === 'auto') {
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        return mode;
+    }
+
+    function nextMode(curr) {
+        var idx = order.indexOf(curr);
+        if (idx < 0) {
+            return curr === 'dark' ? 'light' : 'dark';
+        }
+        return order[(idx + 1) % order.length];
+    }
+
+    function applyMode(mode) {
+        var resolved = resolveScheme(mode);
+        document.documentElement.dataset.scheme = resolved;
+        window.dispatchEvent(new CustomEvent('onColorSchemeChange', { detail: resolved }));
+    }
+
+    function currentStoredMode() {
+        var stored = localStorage.getItem(key);
+        if (stored === 'light' || stored === 'dark') {
+            return stored;
+        }
+
+        var currentDataset = document.documentElement.dataset.scheme;
+        return currentDataset === 'dark' ? 'dark' : 'light';
+    }
+
+    toggleBtn.addEventListener('click', function () {
+        var current = currentStoredMode();
+        var next = nextMode(current);
+        localStorage.setItem(key, next);
+        applyMode(next);
+    });
+})();
+</script>
+{{ end }}

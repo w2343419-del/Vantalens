@@ -1,0 +1,15 @@
+{
+ "comments": [
+  {
+   "id": "20260415122722-aaaaaaaa",
+   "author": "TestUser",
+   "email": "test@example.com",
+   "content": "This is a test comment",
+   "timestamp": "2026-04-15T12:27:22+08:00",
+   "approved": false,
+   "post_path": "test-post",
+   "ip_address": "127.0.0.1:4840",
+   "user_agent": "Mozilla/5.0 (Windows NT; Windows NT 10.0; zh-CN) WindowsPowerShell/5.1.26100.8115"
+  }
+ ]
+}

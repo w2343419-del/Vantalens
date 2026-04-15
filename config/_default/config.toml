@@ -1,7 +1,8 @@
 # Change baseurl before deploy
-baseurl = "https://w2343419-del.github.io/WangScape/"
+baseurl = "https://w2343419-del.github.io/Vantalens/"
+theme = "stack"
 languageCode = "en-us"
-title = "WangScape"
+title = "Vantalens"
 
 defaultContentLanguage = "zh-cn"
 

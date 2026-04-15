@@ -1,0 +1,583 @@
+/* === Claude Design System === */
+:root {
+ --claude-terracotta: #c96442;
+ --claude-parchment: #f5f4ed;
+ --claude-ivory: #faf9f5;
+ --claude-near-black: #141413;
+ --claude-charcoal: #4d4c48;
+ --claude-olive-gray: #5e5d59;
+ --claude-dark-surface: #30302e;
+ --claude-border-cream: #f0eee6;
+}
+/* ============================================
+ Claude Design System Override
+ 温暖纸张风格
+ ============================================*/
+
+/* === 颜色系统 === */
+:root {
+  /* 主色 */
+  --claude-terracotta: #c96442;
+  --claude-coral: #d97757;
+  
+  /* 背景 */
+  --claude-parchment: #f5f4ed;
+  --claude-ivory: #faf9f5;
+  --claude-warm-sand: #e8e6dc;
+  
+  /* 文字 */
+  --claude-near-black: #141413;
+  --claude-charcoal: #4d4c48;
+  --claude-olive-gray: #5e5d59;
+  --claude-stone-gray: #87867f;
+  --claude-warm-silver: #b0aea5;
+  
+  /* 深色主题 */
+  --claude-dark-surface: #30302e;
+  --claude-deep-dark: #141413;
+  
+  /* 边框 */
+  --claude-border-cream: #f0eee6;
+  --claude-border-warm: #e8e6dc;
+  --claude-ring-warm: #d1cfc5;
+  
+  /* 动画 */
+  --anim-fast: 0.2s;
+  --anim-normal: 0.3s;
+}
+
+
+/* === 背景覆盖 === */
+body {
+  background: url('../img/home-hero.png') center center / cover no-repeat fixed !important;
+  color: var(--claude-near-black);
+}
+
+[data-scheme="dark"] body {
+  background: url('../img/home-hero.png') center center / cover no-repeat fixed !important;
+  color: var(--claude-warm-silver);
+}
+
+/* === 移除樱花花瓣动画 === */
+.ws-global-petals {
+  display: none !important;
+}
+
+/* === 侧边栏样式 === */
+.sidebar.left, .sidebar.right, .left-sidebar, .right-sidebar {
+  background: rgba(250, 249, 245, 0.08) !important;
+  border: 1px solid rgba(240, 238, 230, 0.18) !important;
+  border-radius: 12px !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+[data-scheme="dark"] .sidebar.left,
+[data-scheme="dark"] .sidebar.right,
+[data-scheme="dark"] .left-sidebar,
+[data-scheme="dark"] .right-sidebar {
+  background: rgba(20, 20, 19, 0.1) !important;
+  border-color: rgba(176, 174, 165, 0.14) !important;
+}
+
+/* === 按钮样式 === */
+.ws-btn, .ws-btn-ghost, .btn {
+  background: rgba(255, 255, 255, 0.04) !important;
+  color: rgba(255, 250, 253, 0.96) !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(255, 255, 255, 0.42) !important;
+  box-shadow: none !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.ws-btn:hover, .ws-btn-ghost:hover, .btn:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.68) !important;
+  transform: translateY(-2px);
+  box-shadow: none !important;
+}
+
+/* === 卡片样式 === */
+.ws-entry-card, .ws-post-card {
+  background: rgba(250, 249, 245, 0.5) !important;
+  border: 1px solid rgba(240, 238, 230, 0.56) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 0 0 1px var(--claude-ring-warm);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+[data-scheme="dark"] .ws-entry-card,
+[data-scheme="dark"] .ws-post-card {
+  background: rgba(48, 48, 46, 0.36) !important;
+  border-color: rgba(94, 93, 89, 0.36) !important;
+}
+
+.ws-entry-card:hover, .ws-post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* === 首页英雄区域 === */
+.vantalens-homepage .ws-cinema-hero,
+.vantalens-homepage .ws-cinema-scene {
+  background: transparent !important;
+}
+
+.vantalens-homepage .ws-cinema-overlay {
+  color: var(--claude-near-black);
+}
+
+.vantalens-homepage .ws-hero-actions .btn,
+.vantalens-homepage .ws-hero-actions .ws-btn,
+.vantalens-homepage .ws-hero-actions .ws-btn-ghost {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: rgba(255, 250, 253, 0.96) !important;
+  border: 1px solid rgba(255, 255, 255, 0.52) !important;
+  box-shadow: none !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.vantalens-homepage .ws-hero-actions .btn:hover,
+.vantalens-homepage .ws-hero-actions .ws-btn:hover,
+.vantalens-homepage .ws-hero-actions .ws-btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.16) !important;
+  border-color: rgba(255, 255, 255, 0.68) !important;
+  box-shadow: none !important;
+}
+
+.vantalens-homepage .ws-hero-title {
+  font-family: "Noto Serif SC", serif;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.vantalens-homepage .ws-hero-title .cn {
+  color: var(--claude-near-black);
+}
+
+.vantalens-homepage .ws-hero-line,
+.vantalens-homepage .ws-soul-line {
+  color: var(--claude-olive-gray) !important;
+  font-family: "Noto Serif SC", serif;
+  line-height: 1.6;
+}
+
+/* === 深色主题英雄区域 === */
+[data-scheme="dark"] .vantalens-homepage .ws-cinema-hero,
+[data-scheme="dark"] .vantalens-homepage .ws-cinema-scene {
+  background: transparent !important;
+}
+
+[data-scheme="dark"] .vantalens-homepage .ws-cinema-overlay {
+  color: var(--claude-warm-silver);
+}
+
+[data-scheme="dark"] .vantalens-homepage .ws-hero-title .cn {
+  color: var(--claude-ivory);
+}
+
+[data-scheme="dark"] .vantalens-homepage .ws-hero-line,
+[data-scheme="dark"] .vantalens-homepage .ws-soul-line {
+  color: var(--claude-warm-silver) !important;
+}
+
+/* === 最近文章区域 === */
+.ws-recent {
+  background: rgba(250, 249, 245, 0.42) !important;
+  border: 1px solid rgba(240, 238, 230, 0.54) !important;
+  border-radius: 16px !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+[data-scheme="dark"] .ws-recent {
+  background: rgba(48, 48, 46, 0.34) !important;
+  border-color: rgba(94, 93, 89, 0.34) !important;
+}
+
+.ws-recent-head h2 {
+  color: var(--claude-near-black);
+  font-family: "Noto Serif SC", serif;
+  font-weight: 500;
+}
+
+.ws-recent-head a {
+  color: var(--claude-terracotta) !important;
+}
+
+/* === 文章卡片标题 === */
+.ws-post-card h3 {
+  color: var(--claude-near-black) !important;
+  font-family: "Noto Serif SC", serif;
+  font-weight: 500;
+}
+
+.ws-post-card p {
+  color: var(--claude-olive-gray) !important;
+}
+
+.ws-post-card time {
+  color: var(--claude-stone-gray) !important;
+}
+
+[data-scheme="dark"] .ws-post-card h3 {
+  color: var(--claude-ivory) !important;
+}
+
+[data-scheme="dark"] .ws-post-card p {
+  color: var(--claude-warm-silver) !important;
+}
+
+/* === 入口卡片网格 === */
+.ws-entry-grid {
+  gap: 16px;
+}
+
+.ws-entry-card {
+  padding: 24px;
+}
+
+.ws-entry-card h3 {
+  color: var(--claude-near-black) !important;
+  font-family: "Noto Serif SC", serif;
+  font-weight: 500;
+}
+
+.ws-entry-card p {
+  color: var(--claude-olive-gray) !important;
+}
+
+[data-scheme="dark"] .ws-entry-card h3 {
+  color: var(--claude-ivory) !important;
+}
+
+[data-scheme="dark"] .ws-entry-card p {
+  color: var(--claude-warm-silver) !important;
+}
+
+/* === 关于链接 === */
+.ws-about-link {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: rgba(255, 250, 253, 0.96) !important;
+  border: 1px solid rgba(255, 255, 255, 0.52) !important;
+  border-radius: 8px !important;
+  padding: 12px 24px;
+  box-shadow: none !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.ws-about-link:hover {
+  background: rgba(255, 255, 255, 0.18) !important;
+  border-color: rgba(255, 255, 255, 0.68) !important;
+  transform: translateY(-2px);
+}
+
+.article-page .main article,
+.article-page article {
+  background: rgba(250, 249, 245, 0.62) !important;
+  border: 1px solid rgba(240, 238, 230, 0.65) !important;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+[data-scheme="dark"] .article-page .main article,
+[data-scheme="dark"] .article-page article {
+  background: rgba(20, 20, 19, 0.42) !important;
+  border-color: rgba(176, 174, 165, 0.2) !important;
+}
+
+/* === 导航菜单 === */
+.sidebar .site-logo a,
+.sidebar .site-title {
+  color: var(--claude-near-black) !important;
+  font-family: "Noto Serif SC", serif;
+}
+
+[data-scheme="dark"] .sidebar .site-logo a,
+[data-scheme="dark"] .sidebar .site-title {
+  color: var(--claude-ivory) !important;
+}
+
+/* === 菜单项 === */
+.sidebar .menu-item a,
+.sidebar .menu-item {
+  color: var(--claude-charcoal) !important;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.sidebar .menu-item a:hover {
+  background: var(--claude-warm-sand) !important;
+  color: var(--claude-terracotta) !important;
+}
+
+[data-scheme="dark"] .sidebar .menu-item a {
+  color: var(--claude-warm-silver) !important;
+}
+
+[data-scheme="dark"] .sidebar .menu-item a:hover {
+  background: var(--claude-dark-surface) !important;
+  color: var(--claude-coral) !important;
+}
+
+/* === 链接颜色 === */
+a {
+  color: var(--claude-terracotta);
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--claude-coral);
+}
+
+[data-scheme="dark"] a {
+  color: var(--claude-coral);
+}
+
+[data-scheme="dark"] a:hover {
+  color: var(--claude-terracotta);
+}
+
+/* === 小组件样式 === */
+.widget {
+  background: var(--claude-ivory) !important;
+  border-radius: 12px;
+  border: 1px solid var(--claude-border-cream);
+}
+
+[data-scheme="dark"] .widget {
+  background: var(--claude-dark-surface) !important;
+  border-color: var(--claude-dark-surface);
+}
+
+.widget .widget-title {
+  color: var(--claude-near-black);
+  font-family: "Noto Serif SC", serif;
+  font-weight: 500;
+}
+
+[data-scheme="dark"] .widget .widget-title {
+  color: var(--claude-ivory);
+}
+
+/* === 搜索框 === */
+.search-box input,
+.search-input {
+  background: var(--claude-ivory) !important;
+  border: 1px solid var(--claude-border-cream) !important;
+  border-radius: 8px !important;
+  color: var(--claude-near-black) !important;
+}
+
+.search-box input:focus,
+.search-input:focus {
+  border-color: var(--claude-terracotta) !important;
+  box-shadow: 0 0 0 2px rgba(201, 100, 66, 0.2);
+}
+
+[data-scheme="dark"] .search-box input,
+[data-scheme="dark"] .search-input {
+  background: var(--claude-dark-surface) !important;
+  border-color: var(--claude-dark-surface) !important;
+  color: var(--claude-warm-silver) !important;
+}
+
+/* === 归档页面 === */
+.archive .archive-item,
+.archive-item {
+  border-left: 2px solid var(--claude-border-warm);
+  transition: all 0.2s ease;
+}
+
+.archive .archive-item:hover,
+.archive-item:hover {
+  border-left-color: var(--claude-terracotta);
+}
+
+/* === 分页 === */
+.pagination a,
+.pagination span {
+  background: var(--claude-ivory);
+  border: 1px solid var(--claude-border-cream);
+  border-radius: 8px;
+  color: var(--claude-charcoal);
+  transition: all 0.2s ease;
+}
+
+.pagination a:hover {
+  background: var(--claude-terracotta) !important;
+  color: var(--claude-ivory) !important;
+  border-color: var(--claude-terracotta) !important;
+}
+
+[data-scheme="dark"] .pagination a,
+[data-scheme="dark"] .pagination span {
+  background: var(--claude-dark-surface);
+  border-color: var(--claude-dark-surface);
+  color: var(--claude-warm-silver);
+}
+
+/* === 文章详情页 === */
+.article-page .article-title {
+  color: var(--claude-near-black);
+  font-family: "Noto Serif SC", serif;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.article-page .article-content {
+  color: var(--claude-charcoal);
+  line-height: 1.7;
+}
+
+.article-page .article-meta {
+  color: var(--claude-stone-gray);
+}
+
+[data-scheme="dark"] .article-page .article-title {
+  color: var(--claude-ivory);
+}
+
+[data-scheme="dark"] .article-page .article-content {
+  color: var(--claude-warm-silver);
+}
+
+/* === 代码块（内联兜底） === */
+.article-page .article-content :not(pre) > code {
+  border-radius: 6px;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  color: var(--claude-near-black);
+}
+
+[data-scheme="dark"] .article-page .article-content :not(pre) > code {
+  color: var(--claude-warm-silver);
+}
+
+/* === 引用 === */
+blockquote {
+  border-left: 3px solid var(--claude-terracotta);
+  background: var(--claude-ivory);
+  border-radius: 0 8px 8px 0;
+  padding: 16px 20px;
+  color: var(--claude-olive-gray);
+}
+
+[data-scheme="dark"] blockquote {
+  background: var(--claude-dark-surface);
+  color: var(--claude-warm-silver);
+}
+
+/* === 表格 === */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid var(--claude-border-warm);
+  padding: 12px;
+}
+
+th {
+  background: var(--claude-warm-sand);
+  color: var(--claude-near-black);
+}
+
+[data-scheme="dark"] th,
+[data-scheme="dark"] td {
+  border-color: var(--claude-dark-surface);
+}
+
+[data-scheme="dark"] th {
+  background: var(--claude-dark-surface);
+  color: var(--claude-ivory);
+}
+
+/* === 页脚 === */
+footer, .footer {
+  background: transparent;
+  border-top: 1px solid transparent;
+  color: var(--claude-stone-gray);
+}
+
+[data-scheme="dark"] footer,
+[data-scheme="dark"] .footer {
+  background: transparent;
+  border-top-color: transparent;
+  color: var(--claude-warm-silver);
+}
+
+/* === 滚动指示器 === */
+.scroll-indicator {
+  background: var(--claude-ivory);
+  border: 1px solid var(--claude-border-cream);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* === 响应式调整 === */
+@media screen and (max-width: 768px) {
+  .sidebar.left,
+  .sidebar.right {
+    background: var(--claude-ivory) !important;
+    border-radius: 0 !important;
+  }
+  
+  .ws-entry-card,
+  .ws-post-card,
+  .ws-recent {
+    border-radius: 12px !important;
+  }
+  
+  .ws-hero-title {
+    font-size: 2rem !important;
+  }
+}
+
+/* === 选中文字样式 === */
+::selection {
+  background: rgba(201, 100, 66, 0.2);
+  color: var(--claude-near-black);
+}
+
+[data-scheme="dark"] ::selection {
+  background: rgba(201, 100, 66, 0.3);
+  color: var(--claude-ivory);
+}
+
+/* === 滚动条 === */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--claude-ring-warm);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--claude-terracotta);
+}
+
+[data-scheme="dark"] ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+[data-scheme="dark"] ::-webkit-scrollbar-thumb {
+  background: var(--claude-dark-surface);
+}
+
+/* === 结束 === */
+

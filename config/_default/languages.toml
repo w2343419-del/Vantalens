@@ -1,6 +1,6 @@
 [zh-cn]
 languageName = "中文"
-title = "望境"
+title = "望岳"
 weight = 1
 contentDir = "content/zh-cn"
 
@@ -42,7 +42,7 @@ contentDir = "content/zh-cn"
 
 [en]
 languageName = "English"
-title = "WangScape"
+title = "Vantalens"
 weight = 2
 contentDir = "content/en"
 
