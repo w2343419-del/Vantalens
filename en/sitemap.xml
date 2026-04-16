@@ -2,208 +2,208 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://w2343419-del.github.io/WangScape/en/categories/algorithm/</loc>
+    <loc>https://vantalens.github.io/VantalensWeb/en/categories/algorithm/</loc>
     <lastmod>2026-03-15T22:06:00+08:00</lastmod>
   </url><url>
-    <loc>https://w2343419-del.github.io/WangScape/en/categories/</loc>
-    <lastmod>2026-03-15T22:06:00+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://w2343419-del.github.io/WangScape/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://w2343419-del.github.io/WangScape/en/categories/"
-                />
-  </url><url>
-    <loc>https://w2343419-del.github.io/WangScape/en/tags/high-precision-calculations/</loc>
-    <lastmod>2026-03-15T22:06:00+08:00</lastmod>
-  </url><url>
-    <loc>https://w2343419-del.github.io/WangScape/en/p/high-precision-calculations-in-c/</loc>
+    <loc>https://vantalens.github.io/VantalensWeb/en/categories/</loc>
     <lastmod>2026-03-15T22:06:00+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="https://w2343419-del.github.io/WangScape/p/c-%E8%AF%AD%E8%A8%80%E7%9A%84%E9%AB%98%E7%B2%BE%E5%BA%A6%E8%AE%A1%E7%AE%97/"
+                href="https://vantalens.github.io/VantalensWeb/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://w2343419-del.github.io/WangScape/en/p/high-precision-calculations-in-c/"
+                href="https://vantalens.github.io/VantalensWeb/en/categories/"
                 />
   </url><url>
-    <loc>https://w2343419-del.github.io/WangScape/en/</loc>
+    <loc>https://vantalens.github.io/VantalensWeb/en/tags/high-precision-calculations/</loc>
+    <lastmod>2026-03-15T22:06:00+08:00</lastmod>
+  </url><url>
+    <loc>https://vantalens.github.io/VantalensWeb/en/p/high-precision-calculations-in-c/</loc>
     <lastmod>2026-03-15T22:06:00+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="https://w2343419-del.github.io/WangScape/"
+                href="https://vantalens.github.io/VantalensWeb/p/c-%E8%AF%AD%E8%A8%80%E7%9A%84%E9%AB%98%E7%B2%BE%E5%BA%A6%E8%AE%A1%E7%AE%97/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://w2343419-del.github.io/WangScape/en/"
+                href="https://vantalens.github.io/VantalensWeb/en/p/high-precision-calculations-in-c/"
                 />
   </url><url>
-    <loc>https://w2343419-del.github.io/WangScape/en/post/</loc>
+    <loc>https://vantalens.github.io/VantalensWeb/en/</loc>
     <lastmod>2026-03-15T22:06:00+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="https://w2343419-del.github.io/WangScape/post/"
+                href="https://vantalens.github.io/VantalensWeb/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://w2343419-del.github.io/WangScape/en/post/"
+                href="https://vantalens.github.io/VantalensWeb/en/"
                 />
   </url><url>
-    <loc>https://w2343419-del.github.io/WangScape/en/tags/</loc>
+    <loc>https://vantalens.github.io/VantalensWeb/en/post/</loc>
     <lastmod>2026-03-15T22:06:00+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="https://w2343419-del.github.io/WangScape/tags/"
+                href="https://vantalens.github.io/VantalensWeb/post/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://w2343419-del.github.io/WangScape/en/tags/"
+                href="https://vantalens.github.io/VantalensWeb/en/post/"
                 />
   </url><url>
-    <loc>https://w2343419-del.github.io/WangScape/en/p/time-and-space-complexity/</loc>
+    <loc>https://vantalens.github.io/VantalensWeb/en/tags/</loc>
+    <lastmod>2026-03-15T22:06:00+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://vantalens.github.io/VantalensWeb/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://vantalens.github.io/VantalensWeb/en/tags/"
+                />
+  </url><url>
+    <loc>https://vantalens.github.io/VantalensWeb/en/p/time-and-space-complexity/</loc>
     <lastmod>2026-03-09T10:32:00+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="https://w2343419-del.github.io/WangScape/p/%E6%97%B6%E9%97%B4%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/"
+                href="https://vantalens.github.io/VantalensWeb/p/%E6%97%B6%E9%97%B4%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://w2343419-del.github.io/WangScape/en/p/time-and-space-complexity/"
+                href="https://vantalens.github.io/VantalensWeb/en/p/time-and-space-complexity/"
                 />
   </url><url>
-    <loc>https://w2343419-del.github.io/WangScape/en/p/state-transition-equations-and-dynamic-programming/</loc>
+    <loc>https://vantalens.github.io/VantalensWeb/en/p/state-transition-equations-and-dynamic-programming/</loc>
     <lastmod>2026-03-02T13:57:00+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="https://w2343419-del.github.io/WangScape/p/%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB%E6%96%B9%E7%A8%8B%E4%B8%8E%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"
+                href="https://vantalens.github.io/VantalensWeb/p/%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB%E6%96%B9%E7%A8%8B%E4%B8%8E%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://w2343419-del.github.io/WangScape/en/p/state-transition-equations-and-dynamic-programming/"
+                href="https://vantalens.github.io/VantalensWeb/en/p/state-transition-equations-and-dynamic-programming/"
                 />
   </url><url>
-    <loc>https://w2343419-del.github.io/WangScape/en/tags/dfs/</loc>
+    <loc>https://vantalens.github.io/VantalensWeb/en/tags/dfs/</loc>
     <lastmod>2026-02-28T11:31:00+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="https://w2343419-del.github.io/WangScape/tags/dfs/"
+                href="https://vantalens.github.io/VantalensWeb/tags/dfs/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://w2343419-del.github.io/WangScape/en/tags/dfs/"
+                href="https://vantalens.github.io/VantalensWeb/en/tags/dfs/"
                 />
   </url><url>
-    <loc>https://w2343419-del.github.io/WangScape/en/tags/dynamic-programming/</loc>
+    <loc>https://vantalens.github.io/VantalensWeb/en/tags/dynamic-programming/</loc>
     <lastmod>2026-02-28T11:31:00+08:00</lastmod>
   </url><url>
-    <loc>https://w2343419-del.github.io/WangScape/en/tags/expense-flow/</loc>
+    <loc>https://vantalens.github.io/VantalensWeb/en/tags/expense-flow/</loc>
     <lastmod>2026-02-28T11:31:00+08:00</lastmod>
   </url><url>
-    <loc>https://w2343419-del.github.io/WangScape/en/p/p1004-noip-2000-improvement-group-grid-score-analysis-and-summary/</loc>
+    <loc>https://vantalens.github.io/VantalensWeb/en/p/p1004-noip-2000-improvement-group-grid-score-analysis-and-summary/</loc>
     <lastmod>2026-02-28T11:31:00+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="https://w2343419-del.github.io/WangScape/p/p1004-noip-2000-%E6%8F%90%E9%AB%98%E7%BB%84-%E6%96%B9%E6%A0%BC%E5%8F%96%E6%95%B0-%E5%88%86%E6%9E%90%E4%B8%8E%E6%80%BB%E7%BB%93/"
+                href="https://vantalens.github.io/VantalensWeb/p/p1004-noip-2000-%E6%8F%90%E9%AB%98%E7%BB%84-%E6%96%B9%E6%A0%BC%E5%8F%96%E6%95%B0-%E5%88%86%E6%9E%90%E4%B8%8E%E6%80%BB%E7%BB%93/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://w2343419-del.github.io/WangScape/en/p/p1004-noip-2000-improvement-group-grid-score-analysis-and-summary/"
+                href="https://vantalens.github.io/VantalensWeb/en/p/p1004-noip-2000-improvement-group-grid-score-analysis-and-summary/"
                 />
   </url><url>
-    <loc>https://w2343419-del.github.io/WangScape/en/p/alpine-flowing-water-searching-for-sound/</loc>
+    <loc>https://vantalens.github.io/VantalensWeb/en/p/alpine-flowing-water-searching-for-sound/</loc>
     <lastmod>2026-02-03T13:28:00+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="https://w2343419-del.github.io/WangScape/p/%E9%AB%98%E5%B1%B1%E6%B5%81%E6%B0%B4%E8%A7%85%E7%9F%A5%E9%9F%B3/"
+                href="https://vantalens.github.io/VantalensWeb/p/%E9%AB%98%E5%B1%B1%E6%B5%81%E6%B0%B4%E8%A7%85%E7%9F%A5%E9%9F%B3/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://w2343419-del.github.io/WangScape/en/p/alpine-flowing-water-searching-for-sound/"
+                href="https://vantalens.github.io/VantalensWeb/en/p/alpine-flowing-water-searching-for-sound/"
                 />
   </url><url>
-    <loc>https://w2343419-del.github.io/WangScape/en/archives/</loc>
+    <loc>https://vantalens.github.io/VantalensWeb/en/archives/</loc>
     <lastmod>2026-01-21T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="https://w2343419-del.github.io/WangScape/archives/"
+                href="https://vantalens.github.io/VantalensWeb/archives/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://w2343419-del.github.io/WangScape/en/archives/"
+                href="https://vantalens.github.io/VantalensWeb/en/archives/"
                 />
   </url><url>
-    <loc>https://w2343419-del.github.io/WangScape/en/page/</loc>
+    <loc>https://vantalens.github.io/VantalensWeb/en/page/</loc>
     <lastmod>2026-01-21T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="https://w2343419-del.github.io/WangScape/page/"
+                href="https://vantalens.github.io/VantalensWeb/page/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://w2343419-del.github.io/WangScape/en/page/"
+                href="https://vantalens.github.io/VantalensWeb/en/page/"
                 />
   </url><url>
-    <loc>https://w2343419-del.github.io/WangScape/en/about/</loc>
+    <loc>https://vantalens.github.io/VantalensWeb/en/about/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="https://w2343419-del.github.io/WangScape/about/"
+                href="https://vantalens.github.io/VantalensWeb/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://w2343419-del.github.io/WangScape/en/about/"
+                href="https://vantalens.github.io/VantalensWeb/en/about/"
                 />
   </url><url>
-    <loc>https://w2343419-del.github.io/WangScape/en/links/</loc>
+    <loc>https://vantalens.github.io/VantalensWeb/en/links/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="https://w2343419-del.github.io/WangScape/links/"
+                href="https://vantalens.github.io/VantalensWeb/links/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://w2343419-del.github.io/WangScape/en/links/"
+                href="https://vantalens.github.io/VantalensWeb/en/links/"
                 />
   </url><url>
-    <loc>https://w2343419-del.github.io/WangScape/en/search/</loc>
+    <loc>https://vantalens.github.io/VantalensWeb/en/search/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="https://w2343419-del.github.io/WangScape/search/"
+                href="https://vantalens.github.io/VantalensWeb/search/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://w2343419-del.github.io/WangScape/en/search/"
+                href="https://vantalens.github.io/VantalensWeb/en/search/"
                 />
   </url>
 </urlset>

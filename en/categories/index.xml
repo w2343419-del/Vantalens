@@ -1,19 +1,15 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Categories on WangScape</title>
-        <link>https://w2343419-del.github.io/WangScape/en/categories/</link>
-        <description>Recent content in Categories on WangScape</description>
+        <title>Categories on Vantalens</title>
+        <link>https://vantalens.github.io/VantalensWeb/en/categories/</link>
+        <description>Recent content in Categories on Vantalens</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Sun, 15 Mar 2026 22:06:00 +0800</lastBuildDate><atom:link href="https://w2343419-del.github.io/WangScape/en/categories/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Algorithm</title>
-        <link>https://w2343419-del.github.io/WangScape/en/categories/algorithm/</link>
-        <pubDate>Sun, 15 Mar 2026 22:06:00 +0800</pubDate>
-        
-        <guid>https://w2343419-del.github.io/WangScape/en/categories/algorithm/</guid>
-        <description></description>
-        </item>
-        
-    </channel>
+        <lastBuildDate>Sun, 15 Mar 2026 22:06:00 +0800</lastBuildDate><atom:link href="https://vantalens.github.io/VantalensWeb/en/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+            <title>Algorithm</title>
+            <link>https://vantalens.github.io/VantalensWeb/en/categories/algorithm/</link>
+            <pubDate>Sun, 15 Mar 2026 22:06:00 +0800</pubDate>
+            <guid>https://vantalens.github.io/VantalensWeb/en/categories/algorithm/</guid>
+            <description></description>
+        </item></channel>
 </rss>
