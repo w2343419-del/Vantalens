@@ -44,6 +44,11 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
+      - name: Fetch Stack theme
+        run: |
+          mkdir -p themes
+          rm -rf themes/stack
+          git clone --depth 1 --branch master https://github.com/CaiJimmy/hugo-theme-stack.git themes/stack
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5

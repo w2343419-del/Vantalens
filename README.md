@@ -77,7 +77,7 @@ $env:TALENTWRITER_AUTOSTART_HUGO="false"
 hugo server
 ```
 
-打开 http://localhost:1313/Vantalens/ 预览。
+打开 http://localhost:1313/VantalensWeb/ 预览。
 
 ### 3. 构建桌面工具
 

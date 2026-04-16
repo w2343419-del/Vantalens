@@ -41,7 +41,7 @@ Open http://127.0.0.1:8080.
 hugo server
 ```
 
-Open http://localhost:1313/Vantalens/.
+Open http://localhost:1313/VantalensWeb/.
 
 ### 3) Build the executable
 

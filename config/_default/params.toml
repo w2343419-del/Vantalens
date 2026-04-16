@@ -4,7 +4,7 @@ favicon = "img/favicon.png"
 
 apiBase = ""
 
-githubCommentsRepo = "w2343419-del/Vantalens"
+githubCommentsRepo = "Vantalens/VantalensWeb"
 githubCommentsLabelApproved = "approved"
 githubCommentsLabelPending = "pending"
 githubCommentsLabelComment = "comment"
