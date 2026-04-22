@@ -31,50 +31,170 @@
 /* ===== 全页樱花飘落动画（增强朦胧感） ===== */
 @keyframes globalPetalFall {
     0% {
-        top: -8%;
-        opacity: 0.24;
-        transform: translateX(0) rotate(0deg);
-        filter: blur(1.8px);
+        opacity: 0;
+        transform: translate3d(0, -10vh, 0) rotate(0deg) scale(0.9);
+        filter: blur(1.1px);
     }
 
-    15% {
-        opacity: 0.42;
-        filter: blur(1.4px);
+    12% {
+        opacity: 0.72;
+        filter: blur(0.9px);
     }
 
     50% {
-        opacity: 0.4;
-        filter: blur(1.3px);
-    }
-
-    85% {
-        opacity: 0.2;
-        filter: blur(1.6px);
+        opacity: 0.58;
+        transform: translate3d(calc(var(--petal-x, 0px) * 0.55), 56vh, 0) rotate(180deg) scale(1);
+        filter: blur(0.8px);
     }
 
     100% {
-        top: 100%;
         opacity: 0;
-        transform: translateX(var(--petal-x, 0px)) rotate(360deg);
-        filter: blur(2.2px);
+        transform: translate3d(var(--petal-x, 0px), 122vh, 0) rotate(360deg) scale(0.92);
+        filter: blur(1.2px);
+    }
+}
+
+@keyframes globalPetalDriftA {
+    0% {
+        top: -10%;
+        opacity: 0;
+        transform: translate3d(0, 0, 0) rotate(0deg) scale(0.94);
+    }
+
+    12% {
+        opacity: 0.2;
+        transform: translate3d(10px, 0, 0) rotate(34deg) scale(0.98);
+    }
+
+    30% {
+        transform: translate3d(-24px, 0, 0) rotate(118deg) scale(1.02);
+    }
+
+    52% {
+        transform: translate3d(18px, 0, 0) rotate(198deg) scale(1.01);
+    }
+
+    76% {
+        transform: translate3d(-12px, 0, 0) rotate(282deg) scale(0.97);
+    }
+
+    100% {
+        top: 108%;
+        opacity: 0;
+        transform: translate3d(30px, 0, 0) rotate(390deg) scale(0.92);
+    }
+}
+
+@keyframes globalPetalDriftB {
+    0% {
+        top: -12%;
+        opacity: 0;
+        transform: translate3d(0, 0, 0) rotate(12deg) scale(0.9);
+    }
+
+    16% {
+        opacity: 0.18;
+        transform: translate3d(-16px, 0, 0) rotate(58deg) scale(0.95);
+    }
+
+    34% {
+        transform: translate3d(22px, 0, 0) rotate(146deg) scale(1);
+    }
+
+    58% {
+        transform: translate3d(-28px, 0, 0) rotate(228deg) scale(0.98);
+    }
+
+    82% {
+        transform: translate3d(14px, 0, 0) rotate(318deg) scale(0.94);
+    }
+
+    100% {
+        top: 110%;
+        opacity: 0;
+        transform: translate3d(-18px, 0, 0) rotate(424deg) scale(0.9);
+    }
+}
+
+@keyframes globalPetalDriftC {
+    0% {
+        top: -9%;
+        opacity: 0;
+        transform: translate3d(0, 0, 0) rotate(-10deg) scale(0.93);
+    }
+
+    14% {
+        opacity: 0.22;
+        transform: translate3d(14px, 0, 0) rotate(42deg) scale(0.97);
+    }
+
+    37% {
+        transform: translate3d(-20px, 0, 0) rotate(130deg) scale(1.03);
+    }
+
+    63% {
+        transform: translate3d(26px, 0, 0) rotate(214deg) scale(1);
+    }
+
+    84% {
+        transform: translate3d(-10px, 0, 0) rotate(300deg) scale(0.96);
+    }
+
+    100% {
+        top: 109%;
+        opacity: 0;
+        transform: translate3d(20px, 0, 0) rotate(402deg) scale(0.91);
+    }
+}
+
+@keyframes globalPetalDriftD {
+    0% {
+        top: -11%;
+        opacity: 0;
+        transform: translate3d(0, 0, 0) rotate(8deg) scale(0.92);
+    }
+
+    18% {
+        opacity: 0.16;
+        transform: translate3d(-12px, 0, 0) rotate(50deg) scale(0.96);
+    }
+
+    41% {
+        transform: translate3d(18px, 0, 0) rotate(136deg) scale(1.01);
+    }
+
+    67% {
+        transform: translate3d(-26px, 0, 0) rotate(224deg) scale(0.99);
+    }
+
+    88% {
+        transform: translate3d(12px, 0, 0) rotate(316deg) scale(0.95);
+    }
+
+    100% {
+        top: 111%;
+        opacity: 0;
+        transform: translate3d(-22px, 0, 0) rotate(428deg) scale(0.9);
     }
 }
 
 /* ===== 基础布局 ===== */
 html,
 body {
-    height: 100%;
+    min-height: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 body {
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
     background: linear-gradient(130deg, rgba(250, 221, 233, 0.55), rgba(241, 199, 218, 0.45)), url('../img/home-hero.png') center center / cover no-repeat fixed;
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 body::before {
@@ -85,8 +205,17 @@ body::before {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 1;
+    z-index: 0;
     background: radial-gradient(circle at 15% 20%, rgba(255, 236, 244, 0.25), transparent 40%), radial-gradient(circle at 80% 72%, rgba(255, 209, 230, 0.18), transparent 45%);
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background: linear-gradient(180deg, rgba(255, 250, 252, 0.06), rgba(255, 247, 251, 0.09));
 }
 
 /* ===== 全页樱花花瓣 ===== */
@@ -97,88 +226,252 @@ body::before {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 1;
+    z-index: 10001;
+    opacity: 0.75;
+    mix-blend-mode: normal;
 }
 
 .ws-global-petals span {
     position: absolute;
-    width: 14px;
-    height: 10px;
+    top: -12%;
+    width: 20px;
+    height: 14px;
     border-radius: 100% 0% 100% 70% / 60% 100% 30% 70%;
-    background: linear-gradient(135deg, #f8d7e4 0%, #ffd1dc 50%, #f8bbd0 100%);
-    opacity: 0.42;
-    filter: blur(1.4px);
+    background: linear-gradient(135deg, rgba(255, 244, 248, 0.98) 0%, rgba(255, 204, 224, 0.92) 46%, rgba(246, 162, 198, 0.82) 100%);
+    opacity: 0.55;
+    filter: blur(0.9px) saturate(118%);
+    transform-origin: center;
     will-change: transform;
+    animation: globalPetalFall 24s linear infinite;
+    animation-delay: 0s;
+    animation-fill-mode: both;
+    backface-visibility: hidden;
 }
 
 .ws-global-petals span:nth-child(1) {
     left: 5%;
     --petal-x: 20px;
-    animation: globalPetalFall 22s linear infinite;
+    animation: globalPetalFall 18s linear infinite;
     animation-delay: 0s;
 }
 
 .ws-global-petals span:nth-child(2) {
     left: 15%;
     --petal-x: -30px;
-    animation: globalPetalFall 26s linear infinite;
+    animation: globalPetalFall 21s linear infinite;
     animation-delay: -4s;
 }
 
 .ws-global-petals span:nth-child(3) {
     left: 30%;
     --petal-x: 25px;
-    animation: globalPetalFall 24s linear infinite;
+    animation: globalPetalFall 19s linear infinite;
     animation-delay: -2s;
 }
 
 .ws-global-petals span:nth-child(4) {
     left: 50%;
     --petal-x: -20px;
-    animation: globalPetalFall 25s linear infinite;
+    animation: globalPetalFall 22s linear infinite;
     animation-delay: -6s;
 }
 
 .ws-global-petals span:nth-child(5) {
     left: 70%;
     --petal-x: 30px;
-    animation: globalPetalFall 21s linear infinite;
+    animation: globalPetalFall 17s linear infinite;
     animation-delay: -3s;
 }
 
 .ws-global-petals span:nth-child(6) {
     left: 85%;
     --petal-x: -25px;
-    animation: globalPetalFall 27s linear infinite;
+    animation: globalPetalFall 23s linear infinite;
     animation-delay: -5s;
 }
 
 .ws-global-petals span:nth-child(7) {
     left: 10%;
     --petal-x: 15px;
-    animation: globalPetalFall 23s linear infinite;
+    animation: globalPetalFall 20s linear infinite;
     animation-delay: -1s;
 }
 
 .ws-global-petals span:nth-child(8) {
     left: 45%;
     --petal-x: -35px;
-    animation: globalPetalFall 25s linear infinite;
+    animation: globalPetalFall 24s linear infinite;
     animation-delay: -7s;
 }
 
 .ws-global-petals span:nth-child(9) {
     left: 75%;
     --petal-x: 22px;
-    animation: globalPetalFall 22s linear infinite;
+    animation: globalPetalFall 18s linear infinite;
     animation-delay: -4.5s;
 }
 
 .ws-global-petals span:nth-child(10) {
     left: 25%;
     --petal-x: -28px;
-    animation: globalPetalFall 26s linear infinite;
+    animation: globalPetalFall 22s linear infinite;
     animation-delay: -2.5s;
+}
+
+.ws-global-petals span:nth-child(11) {
+    left: 62%;
+    width: 12px;
+    height: 9px;
+    opacity: 0.48;
+    --petal-x: 18px;
+    animation: globalPetalFall 25s linear infinite;
+    animation-delay: -9s;
+}
+
+.ws-global-petals span:nth-child(12) {
+    left: 18%;
+    width: 10px;
+    height: 7px;
+    opacity: 0.44;
+    --petal-x: -22px;
+    animation: globalPetalFall 26s linear infinite;
+    animation-delay: -11s;
+}
+
+.ws-global-petals span:nth-child(13) {
+    left: 39%;
+    width: 13px;
+    height: 10px;
+    opacity: 0.5;
+    --petal-x: 26px;
+    animation: globalPetalFall 24s linear infinite;
+    animation-delay: -7s;
+}
+
+.ws-global-petals span:nth-child(14) {
+    left: 58%;
+    width: 9px;
+    height: 7px;
+    opacity: 0.42;
+    --petal-x: -16px;
+    animation: globalPetalFall 27s linear infinite;
+    animation-delay: -13s;
+}
+
+.ws-global-petals span:nth-child(15) {
+    left: 82%;
+    width: 11px;
+    height: 8px;
+    opacity: 0.4;
+    --petal-x: 20px;
+    animation: globalPetalFall 28s linear infinite;
+    animation-delay: -8s;
+}
+
+.ws-global-petals span:nth-child(16) {
+    left: 92%;
+    width: 10px;
+    height: 7px;
+    opacity: 0.38;
+    --petal-x: -24px;
+    animation: globalPetalFall 29s linear infinite;
+    animation-delay: -15s;
+}
+
+.ws-global-petals span:nth-child(17) {
+    left: 8%;
+    width: 11px;
+    height: 8px;
+    opacity: 0.3;
+    --petal-x: 14px;
+    animation: globalPetalFall 31s linear infinite;
+    animation-delay: -12s;
+}
+
+.ws-global-petals span:nth-child(18) {
+    left: 22%;
+    width: 14px;
+    height: 10px;
+    opacity: 0.32;
+    --petal-x: -18px;
+    animation: globalPetalFall 27s linear infinite;
+    animation-delay: -9s;
+}
+
+.ws-global-petals span:nth-child(19) {
+    left: 34%;
+    width: 12px;
+    height: 9px;
+    opacity: 0.29;
+    --petal-x: 24px;
+    animation: globalPetalFall 33s linear infinite;
+    animation-delay: -17s;
+}
+
+.ws-global-petals span:nth-child(20) {
+    left: 41%;
+    width: 10px;
+    height: 7px;
+    opacity: 0.26;
+    --petal-x: -14px;
+    animation: globalPetalFall 30s linear infinite;
+    animation-delay: -14s;
+}
+
+.ws-global-petals span:nth-child(21) {
+    left: 53%;
+    width: 13px;
+    height: 9px;
+    opacity: 0.31;
+    --petal-x: 16px;
+    animation: globalPetalFall 28s linear infinite;
+    animation-delay: -20s;
+}
+
+.ws-global-petals span:nth-child(22) {
+    left: 66%;
+    width: 11px;
+    height: 8px;
+    opacity: 0.28;
+    --petal-x: -20px;
+    animation: globalPetalFall 32s linear infinite;
+    animation-delay: -18s;
+}
+
+.ws-global-petals span:nth-child(23) {
+    left: 78%;
+    width: 12px;
+    height: 9px;
+    opacity: 0.27;
+    --petal-x: 22px;
+    animation: globalPetalFall 34s linear infinite;
+    animation-delay: -24s;
+}
+
+.ws-global-petals span:nth-child(24) {
+    left: 96%;
+    width: 10px;
+    height: 7px;
+    opacity: 0.25;
+    --petal-x: -12px;
+    animation: globalPetalFall 29s linear infinite;
+    animation-delay: -16s;
+}
+
+.ws-global-petals span:nth-child(4n + 1) {
+    animation-name: globalPetalFall;
+}
+
+.ws-global-petals span:nth-child(4n + 2) {
+    animation-name: globalPetalFall;
+}
+
+.ws-global-petals span:nth-child(4n + 3) {
+    animation-name: globalPetalFall;
+}
+
+.ws-global-petals span:nth-child(4n) {
+    animation-name: globalPetalFall;
 }
 
 /* ===== 主容器布局 ===== */
@@ -260,13 +553,10 @@ body::before {
     max-width: 900px;
     width: 100%;
     height: 100%;
-    min-height: 100vh;
-    overflow-y: scroll !important;
+    min-height: 0;
+    overflow-y: auto !important;
     overflow-x: hidden !important;
     padding: 20px;
-    scroll-behavior: smooth;
-    scrollbar-width: auto;
-    scrollbar-color: rgba(100, 100, 100, 0.5) transparent;
     box-sizing: border-box;
     display: block;
 }
@@ -315,10 +605,11 @@ body::before {
 .sidebar.left-sidebar header {
     flex-shrink: 0 !important;
     width: 100% !important;
-    padding: 10px 0 10px 0 !important;
+    padding: 0 !important;
     overflow: visible !important;
-    min-height: 240px !important;
+    min-height: 0 !important;
     height: auto !important;
+    margin-bottom: 8px !important;
 }
 
 .sidebar.left .site-info,
@@ -526,8 +817,15 @@ body::before {
 
 #main-menu {
     flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
     overflow-y: auto !important;
     margin-bottom: 0 !important;
+}
+
+#main-menu .menu-bottom-section {
+    margin-top: auto !important;
+    padding-top: 8px !important;
 }
 
 #main-menu svg {
@@ -756,6 +1054,27 @@ body::before {
     width: 100%;
     margin-bottom: 30px;
     overflow: visible;
+    animation: wsFadeIn 0.65s ease both;
+}
+
+.article-list article:nth-child(2) {
+    animation-delay: 0.06s;
+}
+
+.article-list article:nth-child(3) {
+    animation-delay: 0.12s;
+}
+
+.article-list article:nth-child(4) {
+    animation-delay: 0.18s;
+}
+
+.article-list article:nth-child(5) {
+    animation-delay: 0.24s;
+}
+
+.article-list article:nth-child(6) {
+    animation-delay: 0.3s;
 }
 
 /* 确保所有内容容器都允许完全显示 */
@@ -1382,13 +1701,13 @@ article,
 .wangscape-homepage .ws-home {
     display: grid;
     gap: 16px;
-    animation: wsFadeIn 0.8s ease;
+    animation: wsFadeIn 0.8s ease-out both;
 }
 
 .wangscape-homepage .ws-hero {
     position: relative;
     isolation: isolate;
-    min-height: clamp(280px, 36vh, 420px);
+    min-height: 100dvh;
     border-radius: 20px;
     padding: clamp(20px, 3vw, 40px) clamp(18px, 4vw, 56px);
     background: url('../img/home-hero.png') center 25% / cover no-repeat;
@@ -1487,6 +1806,7 @@ article,
     text-decoration: none;
     color: var(--ws-ink);
     transition: transform 0.24s ease, box-shadow 0.24s ease;
+    animation: wsFadeIn 0.7s ease both;
 }
 
 .wangscape-homepage .ws-entry-card:hover {
@@ -1527,6 +1847,7 @@ article,
     background: linear-gradient(160deg, rgba(255, 245, 249, 0.86), rgba(248, 222, 236, 0.82));
     box-shadow: 0 10px 28px rgba(90, 54, 74, 0.12);
     padding: clamp(20px, 2.2vw, 30px);
+    animation: wsFadeIn 0.7s ease both;
 }
 
 .wangscape-homepage .ws-recent-head {
@@ -1559,6 +1880,27 @@ article,
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.52);
     background: rgba(255, 248, 252, 0.86);
+    animation: wsFadeIn 0.68s ease both;
+}
+
+.wangscape-homepage .ws-post-card:nth-child(2) {
+    animation-delay: 0.07s;
+}
+
+.wangscape-homepage .ws-post-card:nth-child(3) {
+    animation-delay: 0.14s;
+}
+
+.wangscape-homepage .ws-post-card:nth-child(4) {
+    animation-delay: 0.21s;
+}
+
+.wangscape-homepage .ws-post-card:nth-child(5) {
+    animation-delay: 0.28s;
+}
+
+.wangscape-homepage .ws-post-card:nth-child(6) {
+    animation-delay: 0.35s;
 }
 
 .wangscape-homepage .ws-post-card a {
@@ -1575,11 +1917,19 @@ article,
     color: #432f49;
 }
 
-.wangscape-homepage .ws-post-card p {
+.wangscape-homepage .ws-post-summary {
     margin: 8px 0 0;
     color: #694f6f;
     font-size: 0.9rem;
     line-height: 1.55;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+.wangscape-homepage .ws-post-summary > p {
+    margin: 0;
 }
 
 .wangscape-homepage .ws-post-card time {
@@ -1647,12 +1997,24 @@ article,
 @keyframes wsPetalFall {
     0% {
         top: -15%;
-        transform: translateX(0) rotate(0deg);
+        opacity: 0;
+        transform: translate3d(0, 0, 0) rotate(0deg) scale(0.9);
+    }
+
+    12% {
+        opacity: 0.42;
+        transform: translate3d(-10px, 0, 0) rotate(35deg) scale(0.98);
+    }
+
+    72% {
+        opacity: 0.35;
+        transform: translate3d(-42px, 0, 0) rotate(210deg) scale(1.02);
     }
 
     100% {
         top: 115%;
-        transform: translateX(-55px) rotate(260deg);
+        opacity: 0;
+        transform: translate3d(-60px, 0, 0) rotate(320deg) scale(0.9);
     }
 }
 
@@ -1682,11 +2044,19 @@ article,
 }
 
 [data-scheme="dark"].wangscape-homepage .ws-entry-card p,
-[data-scheme="dark"].wangscape-homepage .ws-post-card p,
+[data-scheme="dark"].wangscape-homepage .ws-post-summary,
 [data-scheme="dark"].wangscape-homepage .ws-post-card time,
 [data-scheme="dark"].wangscape-homepage .ws-recent-head a,
 [data-scheme="dark"].wangscape-homepage .ws-about-link {
     color: #d7c0cd;
+}
+
+.ws-post-summary {
+    margin: 0;
+}
+
+.ws-post-summary > p {
+    margin: 0;
 }
 
 @media screen and (max-width: 980px) {
@@ -1703,7 +2073,7 @@ article,
     }
 
     .wangscape-homepage .ws-hero {
-        min-height: 360px;
+        min-height: 100dvh;
         padding: 16px;
         border-radius: 14px;
         background-position: center 20%;
@@ -1786,18 +2156,88 @@ article,
 }
 
 .article-page .article-content pre {
-    background: #f8f8f8;
-    border-radius: 8px;
-    padding: 14px;
+    background: #f7f7f9;
+    border-radius: 16px;
+    padding: 0;
     overflow-x: auto;
     margin: 1.2em 0;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #e4e1da;
+    box-shadow: 0 10px 28px rgba(28, 24, 35, 0.06);
 }
 
 .article-page .article-content pre code {
     background: none;
     padding: 0;
     color: inherit;
+}
+
+.article-page .article-content .highlight {
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+.article-page .article-content .highlight pre {
+    margin: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.article-page .article-content .highlight .chroma {
+    display: block;
+    overflow-x: auto;
+    padding: 18px 0;
+}
+
+.article-page .article-content .highlight .lntable {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.article-page .article-content .highlight .lntable td {
+    vertical-align: top;
+    padding: 0;
+}
+
+.article-page .article-content .highlight .lntable .lntd:first-child {
+    width: 3.75rem;
+    background: rgba(0, 0, 0, 0.03);
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.article-page .article-content .highlight .lntable .lntd:first-child pre {
+    padding: 18px 12px 18px 0;
+    text-align: right;
+    color: #9aa0a6;
+    user-select: none;
+}
+
+.article-page .article-content .highlight .lntable .lntd:last-child pre {
+    padding: 18px 18px 18px 16px;
+}
+
+.article-page .article-content .highlight pre,
+.article-page .article-content .highlight code {
+    font-family: "JetBrains Mono", "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+    font-size: 0.92rem;
+    line-height: 1.72;
+}
+
+.article-page .article-content .highlight .lnt,
+.article-page .article-content .highlight .line,
+.article-page .article-content .highlight .cl {
+    display: block;
+    min-height: 1.72em;
+}
+
+.article-page .article-content .ws-post-summary {
+    margin: 0;
+}
+
+.article-page .article-content .ws-post-summary > p {
+    margin: 0;
 }
 
 .article-page .article-content img {
@@ -1842,12 +2282,21 @@ article,
 }
 
 [data-scheme="dark"] .article-page .article-content pre {
-    background: #1a1a1a;
-    border-color: #333;
+    background: #17181d;
+    border-color: #2b2f38;
 }
 
 [data-scheme="dark"] .article-page .article-content code {
     background: rgba(255, 255, 255, 0.1);
+}
+
+[data-scheme="dark"] .article-page .article-content .highlight .lntable .lntd:first-child {
+    background: rgba(255, 255, 255, 0.03);
+    border-right-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-scheme="dark"] .article-page .article-content .highlight .lntable .lntd:first-child pre {
+    color: #7f8794;
 }
 
 [data-scheme="dark"] .article-page .article-content table th {
@@ -1858,13 +2307,30 @@ article,
     border-bottom-color: #333;
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .wangscape-homepage .ws-home,
+    .wangscape-homepage .ws-hero,
+    .wangscape-homepage .ws-entry-card,
+    .wangscape-homepage .ws-recent,
+    .wangscape-homepage .ws-post-card,
+    .article-list article,
+    .ws-timeline-item,
+    .ws-search-wrap,
+    .article-page .article-content .highlight,
+    .article-page .article-content .highlight .lntable .lntd:first-child pre {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+    }
+}
+
 /* 搜索页 */
 .ws-search-page .main {
     max-width: 820px;
 }
 
 .ws-search-wrap {
-    animation: wsFadeIn 0.8s ease;
+    animation: wsFadeIn 0.8s ease-out both;
 }
 
 .ws-search-header {
@@ -1950,7 +2416,7 @@ article,
 }
 
 .ws-archives-wrap {
-    animation: wsFadeIn 0.8s ease;
+    animation: wsFadeIn 0.8s ease-out both;
 }
 
 .ws-archives-header {
@@ -2063,7 +2529,27 @@ article,
     gap: 18px;
     margin-bottom: 18px;
     opacity: 1;
-    animation: wsFadeIn 0.6s ease;
+    animation: wsFadeIn 0.6s ease-out both;
+}
+
+.ws-timeline-item:nth-child(2) {
+    animation-delay: 0.06s;
+}
+
+.ws-timeline-item:nth-child(3) {
+    animation-delay: 0.12s;
+}
+
+.ws-timeline-item:nth-child(4) {
+    animation-delay: 0.18s;
+}
+
+.ws-timeline-item:nth-child(5) {
+    animation-delay: 0.24s;
+}
+
+.ws-timeline-item:nth-child(6) {
+    animation-delay: 0.3s;
 }
 
 .ws-timeline-dot {
@@ -2279,7 +2765,7 @@ article,
 .ws-about-wrap {
     padding: 32px 24px;
     background: linear-gradient(165deg, rgba(255, 244, 249, 0.78), rgba(247, 205, 224, 0.66));
-    animation: wsFadeIn 0.7s ease;
+    animation: wsFadeIn 0.7s ease-out both;
 }
 
 .ws-about-header h1 {
@@ -2496,7 +2982,7 @@ article,
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    animation: wsFadeIn 1.6s ease-in-out;
+    animation: wsFadeIn 1.6s ease-out both;
 }
 
 .wangscape-homepage .ws-hero-title .cn {
@@ -2517,7 +3003,7 @@ article,
     margin-top: 16px;
     color: rgba(255, 240, 247, 0.9);
     font-size: clamp(1rem, 1.65vw, 1.24rem);
-    animation: wsFadeIn 1.6s ease-in-out;
+    animation: wsFadeIn 1.6s ease-out both;
 }
 
 .wangscape-homepage .ws-soul-line {
@@ -2635,11 +3121,11 @@ article,
 .wangscape-homepage .ws-cinema-overlay {
     position: relative;
     z-index: 4;
-    min-height: 100dvh;
+    min-height: clamp(300px, 56vh, 620px);
     width: 92%;
     max-width: 940px;
     margin: 0 auto;
-    padding: clamp(72px, 14vh, 140px) 0 clamp(36px, 8vh, 72px);
+    padding: clamp(40px, 8vh, 88px) 0 clamp(18px, 4vh, 36px);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -2680,7 +3166,7 @@ article,
 }
 
 .wangscape-homepage .ws-hero-line {
-    margin: 22px 0 0;
+    margin: 10px 0 0;
     font-size: clamp(1.18rem, 2vw, 1.56rem);
     color: rgba(255, 241, 247, 0.96);
     letter-spacing: 0.1em;
@@ -2688,7 +3174,7 @@ article,
 }
 
 .wangscape-homepage .ws-soul-line {
-    margin: 10px 0 0;
+    margin: 6px 0 0;
     font-size: clamp(1rem, 1.35vw, 1.14rem);
     color: rgba(255, 237, 244, 0.76);
     letter-spacing: 0.08em;
@@ -2834,7 +3320,7 @@ article,
 @media screen and (max-width: 900px) {
     .wangscape-homepage .ws-cinema-hero,
     .wangscape-homepage .ws-cinema-overlay {
-        min-height: 86dvh;
+        min-height: 100dvh;
     }
 
     .wangscape-homepage .ws-cinema-overlay {
@@ -2861,4 +3347,34 @@ article,
         z-index: 60;
     }
 }
+
+/* ===== Homepage final scroll-safe override ===== */
+.wangscape-homepage .main-container {
+    height: auto !important;
+    min-height: 100dvh !important;
+}
+
+.wangscape-homepage .main {
+    height: auto !important;
+    min-height: 0 !important;
+}
+
+.wangscape-homepage .ws-home {
+    padding-bottom: clamp(16px, 3vh, 32px);
+}
+
+.wangscape-homepage .ws-cinema-hero {
+    min-height: 100dvh !important;
+}
+
+.wangscape-homepage .ws-cinema-overlay {
+    min-height: 100dvh !important;
+}
+
+.wangscape-homepage .ws-entry-grid,
+.wangscape-homepage .ws-recent {
+    position: relative;
+    z-index: 5;
+}
+
 

@@ -3,7 +3,7 @@ article:
         one: " view"
         other: " views"
 selectLanguage:
-    other: "中文"
+    other: "English"
 darkMode:
     other: "Dark Mode"
 toggleMenu:

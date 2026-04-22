@@ -5,9 +5,12 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"os/exec"
 	"os/signal"
+	"path/filepath"
 	"strconv"
 	"syscall"
+	"time"
 
 	"vantalens/talentwriter/internal/auth"
 	"vantalens/talentwriter/internal/config"
@@ -21,17 +24,18 @@ func main() {
 	printBanner()
 	config.LoadEnvFiles(".env", "../.env")
 
-	hugoPath := config.GetEnv("HUGO_PATH", ".")
+	hugoPath := config.ResolveHugoPath(config.GetEnv("HUGO_PATH", "."))
 	adminToken := config.GetEnvAny([]string{"ADMIN_TOKEN", "ADMIN_PASSWORD"}, "")
 
 	log.Printf("[CONFIG] HUGO_PATH: %s", hugoPath)
 	log.Printf("[CONFIG] ADMIN_TOKEN: %s", maskToken(adminToken))
 
 	cfg := &config.Config{
-		HugoPath:   hugoPath,
-		AdminToken: adminToken,
-		ControlPort: parsePort(config.GetEnv("CONTROL_PORT", strconv.Itoa(config.Port)), config.Port),
-		WriterPort:  parsePort(config.GetEnv("WRITER_PORT", "9091"), 9091),
+		HugoPath:     hugoPath,
+		LauncherMode: "all",
+		AdminToken:   adminToken,
+		ControlPort:  parsePort(config.GetEnv("CONTROL_PORT", strconv.Itoa(config.Port)), config.Port),
+		WriterPort:   parsePort(config.GetEnv("WRITER_PORT", "9091"), 9091),
 	}
 	config.SetConfig(cfg)
 
@@ -53,6 +57,10 @@ func main() {
 			log.Fatalf("[SERVER] Error: %v", err)
 		}
 	}()
+
+	if config.GetEnv("TALENTWRITER_AUTO_OPEN_BROWSER", "true") != "false" {
+		go openBrowserWhenReady(fmt.Sprintf("http://127.0.0.1:%d/platform/backend", port))
+	}
 
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
@@ -85,6 +93,31 @@ func maskToken(token string) string {
 	return token[:4] + "****" + token[len(token)-4:]
 }
 
+func openBrowserWhenReady(url string) {
+	deadline := time.Now().Add(10 * time.Second)
+	for time.Now().Before(deadline) {
+		resp, err := http.Get(url)
+		if err == nil {
+			_ = resp.Body.Close()
+			break
+		}
+		time.Sleep(300 * time.Millisecond)
+	}
+	openBrowser(url)
+}
+
+func openBrowser(url string) {
+	if _, err := os.Stat(filepath.Join(os.Getenv("WINDIR"), "System32", "cmd.exe")); err == nil {
+		_ = execCommand("cmd", "/c", "start", "", url)
+		return
+	}
+	_ = execCommand("rundll32", "url.dll,FileProtocolHandler", url)
+}
+
+func execCommand(name string, args ...string) error {
+	cmd := exec.Command(name, args...)
+	return cmd.Start()
+}
 
 const dashboardHTML = `<!doctype html>
 <html lang="zh-CN">

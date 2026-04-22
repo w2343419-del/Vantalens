@@ -1,97 +1,44 @@
-# Vantalens Writer - Refactored Project
+# TalentWriter
 
-## Project Structure
-
-```
-TalentWriter/
-├── cmd/
-│   └── server/
-│       └── main.go          # Application entry point
-├── internal/
-│   ├── models/
-│   │   └── models.go        # Data structures
-│   ├── config/
-│   │   └── config.go        # Configuration management
-│   ├── auth/
-│   │   └── auth.go          # JWT authentication
-│   ├── comment/
-│   │   └── comment.go       # Comment service
-│   ├── email/
-│   │   └── email.go         # Email notification service
-│   ├── handlers/
-│   │   └── handlers.go      # HTTP handlers
-│   └── utils/               # Utility functions
-├── web/
-│   ├── templates/           # HTML templates
-│   └── static/              # Static assets
-├── go.mod
-└── README.md
-```
-
-## Features
-
-- JWT-based authentication
-- Comment management with moderation
-- Email notifications for pending comments
-- Hugo static site integration
-- CORS support for API endpoints
-- Dual-backend architecture:
-	- Control backend (site-wide control and operational checks)
-	- Writer backend (article editing and content workflows)
+TalentWriter is the local management tool for Vantalens. The normal workflow uses one unified launcher, `web`, which provides both the control page and the writer page. Split services are still available for debugging.
 
 ## Build
 
 ```bash
-go build -o talentwriter ./cmd/server
+go build -o web ./cmd/server
+```
+
+Optional service builds:
+
+```bash
+go build -o control ./cmd/control
+go build -o writer ./cmd/writer
 ```
 
 ## Run
 
 ```bash
-HUGO_PATH=/path/to/hugo ADMIN_TOKEN=your-token ./talentwriter
+HUGO_PATH=/path/to/hugo ADMIN_TOKEN=your-token ./web
 ```
 
-### Run Dual Backends (Recommended)
+`web` provides both the control and writer views.
 
-Control backend (default port `9090`):
+## Optional Debug Mode
+
+If you need to troubleshoot one service at a time, run them separately:
 
 ```bash
 go run ./cmd/control
-```
-
-Writer backend (default port `9091`):
-
-```bash
 go run ./cmd/writer
 ```
 
-Optional environment variables:
+Environment variables:
 
-- `CONTROL_PORT` for control backend port
-- `WRITER_PORT` for writer backend port
-- `ADMIN_TOKEN` or `ADMIN_PASSWORD` for admin login password
+- `CONTROL_PORT` for the control backend port
+- `WRITER_PORT` for the writer backend port
+- `ADMIN_TOKEN` or `ADMIN_PASSWORD` for admin authentication
 
-## API Endpoints
-
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| /api/login | POST | Admin login |
-| /api/posts | GET | Get all posts |
-| /api/comments | GET | Get comments for a post |
-| /api/comments/add | POST | Add a new comment |
-| /api/comments/approve | POST | Approve a comment (auth required) |
-| /api/comments/delete | DELETE | Delete a comment (auth required) |
-| /api/settings | GET | Get comment settings |
-| /api/settings/save | POST | Save settings (auth required) |
-
-### Control Backend Endpoints (`mode=control`)
-
-- `/api/login`
-- `/api/control/status`
-- `/api/control/command`
-- `/platform/control`
-
-### Writer Backend Endpoints (`mode=writer`)
+## Main API Groups
 
 - `/api/login`
 - `/api/posts`
@@ -101,4 +48,13 @@ Optional environment variables:
 - `/api/create_post`
 - `/api/comments`
 - `/api/settings`
+- `/api/control/status`
+- `/api/control/command`
+- `/platform/control`
 - `/platform/backend`
+
+## Notes
+
+- The launcher reads Hugo content from the configured `HUGO_PATH`.
+- Comments and settings are stored inside the Hugo site tree.
+- Control and writer pages share the same authentication token namespace in the browser.

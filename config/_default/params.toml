@@ -12,6 +12,8 @@ githubCommentsLabelComment = "comment"
 defaultContentLanguage = "zh-cn"
 hasCJKLanguage = true
 
+description = "Vantalens 是一个专注于计算机算法与全学科知识管理的个人学术站点。网站涵盖技术实战与心得、全学科笔记及人文观察等板块，旨在通过数字化手段，构建系统、专业、跨学科的个人知识档案。"
+
 [article]
 readingTime = true
 math = true
@@ -19,21 +21,3 @@ math = true
 [colorScheme]
 toggle = true
 default = "auto"
-
-[[widgets.homepage]]
-type = "search"
-
-[[widgets.homepage]]
-type = "archives"
-[widgets.homepage.params]
-limit = 5
-
-[[widgets.homepage]]
-type = "links"
-[widgets.homepage.params]
-title = "Links"
-
-[[widgets.homepage.params.items]]
-name = "Google"
-url = "https://google.com"
-desc = "Search Engine"

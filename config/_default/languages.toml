@@ -1,6 +1,6 @@
 [zh-cn]
 languageName = "中文"
-title = "望岳"
+title = "望境"
 weight = 1
 contentDir = "content/zh-cn"
 
@@ -47,7 +47,7 @@ weight = 2
 contentDir = "content/en"
 
 [en.params.sidebar]
-    subtitle = "Waiting for flowers when leaving..."
+    subtitle = "When I left, flowers filled the tower. When I returned, spring was gone."
     avatar = { enabled = true, local = true, src = "img/avatar.png" }
 
 [[en.menu.main]]

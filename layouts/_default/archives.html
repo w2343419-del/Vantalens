@@ -42,7 +42,7 @@
                     <a href="{{ .RelPermalink }}" class="ws-timeline-link">
                         <time>{{ .Date.Format "01.02" }}</time>
                         <h3>{{ .Title }}</h3>
-                        <p>{{ .Summary | plainify | truncate 120 }}</p>
+                        <div class="ws-post-summary">{{ .Description | default (.Summary | plainify | truncate 140) }}</div>
                     </a>
                 </article>
                 {{ end }}

@@ -14,7 +14,6 @@
 {{ $searchPage := .Site.GetPage "/page/search" }}
 {{ $archivesPage := .Site.GetPage "/page/archives" }}
 {{ $linksPage := .Site.GetPage "/page/links" }}
-{{ $aboutPage := .Site.GetPage "/page/about" }}
 
 <section class="ws-home">
     <section class="ws-hero ws-cinema-hero">
@@ -32,10 +31,8 @@
 
         <div class="ws-hero-content ws-cinema-overlay">
             <h1 class="ws-hero-title ws-tl-title">
-                <span class="cn">{{ if $isZh }}望境{{ else }}WangScape{{ end }}</span>
-                {{ if $isZh }}
-                <span class="en">WANGSCAPE</span>
-                {{ end }}
+                <span class="cn">Vantalens</span>
+                <span class="en">VANTALENS</span>
             </h1>
             <p class="ws-hero-line ws-tl-line">{{ $heroLine }}</p>
             <p class="ws-soul-line ws-tl-quote" data-soul-line></p>
@@ -72,7 +69,7 @@
             <article class="ws-post-card">
                 <a href="{{ .RelPermalink }}">
                     <h3>{{ .Title }}</h3>
-                    <p>{{ .Summary | plainify | truncate 88 }}</p>
+                    <div class="ws-post-summary">{{ .Description | default (.Summary | plainify | truncate 120) }}</div>
                     <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
                 </a>
             </article>
@@ -80,11 +77,6 @@
         </div>
     </section>
 
-    <section class="ws-about-link-wrap">
-        <a class="ws-about-link" href="{{ $aboutPage.Permalink }}">{{ if $isZh }}关于 WangScape{{ else }}About WangScape{{ end }}</a>
-    </section>
-
-    {{ partial "footer/footer" . }}
 </section>
 
 <script>
@@ -93,9 +85,15 @@
     var soulLine = document.querySelector('[data-soul-line]');
     if (soulLine) {
         var quotes = [
+            {{ if $isZh }}
             '人间忽晚，山河已秋',
             '夜来风雨声，花落知多少',
             '风定落花深，帘外拥红堆雪'
+            {{ else }}
+            'The evening comes gently, and mountains turn to autumn.',
+            'After night rain, petals fall without a sound.',
+            'When wind rests, blossoms gather like drifting snow.'
+            {{ end }}
         ];
         soulLine.textContent = quotes[Math.floor(Math.random() * quotes.length)];
     }
@@ -232,22 +230,7 @@
                 duration: 6,
                 ease: 'power2.inOut'
             });
-
-            window.gsap.to(camera.position, {
-                y: 0.6,
-                duration: 4,
-                repeat: -1,
-                yoyo: true,
-                ease: 'sine.inOut'
-            });
         }
-
-        document.addEventListener('mousemove', function (e) {
-            var tx = (e.clientX / window.innerWidth - 0.5) * 0.18;
-            var ty = (e.clientY / window.innerHeight - 0.5) * 0.12;
-            camera.position.x += (tx - camera.position.x) * 0.03;
-            camera.lookAt(0, ty, 0);
-        });
 
         function render(time) {
             var t = time * 0.001;
@@ -308,14 +291,6 @@
 
     initScene();
     initTimeline();
-
-    var heroContent = document.querySelector('.ws-hero-content');
-    document.addEventListener('mousemove', function (e) {
-        if (!heroContent) return;
-        var x = (e.clientX / window.innerWidth - 0.5) * 8;
-        var y = (e.clientY / window.innerHeight - 0.5) * 8;
-        heroContent.style.transform = 'translate(' + x.toFixed(2) + 'px, ' + y.toFixed(2) + 'px)';
-    });
 
     var toggleBtn = document.querySelector('[data-home-theme-toggle]');
     if (!toggleBtn) return;

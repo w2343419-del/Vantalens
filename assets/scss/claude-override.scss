@@ -1,66 +1,16 @@
 /* === Claude Design System === */
-:root {
- --claude-terracotta: #c96442;
- --claude-parchment: #f5f4ed;
- --claude-ivory: #faf9f5;
- --claude-near-black: #141413;
- --claude-charcoal: #4d4c48;
- --claude-olive-gray: #5e5d59;
- --claude-dark-surface: #30302e;
- --claude-border-cream: #f0eee6;
-}
-/* ============================================
- Claude Design System Override
- 温暖纸张风格
- ============================================*/
-
-/* === 颜色系统 === */
-:root {
-  /* 主色 */
-  --claude-terracotta: #c96442;
-  --claude-coral: #d97757;
-  
-  /* 背景 */
-  --claude-parchment: #f5f4ed;
-  --claude-ivory: #faf9f5;
-  --claude-warm-sand: #e8e6dc;
-  
-  /* 文字 */
-  --claude-near-black: #141413;
-  --claude-charcoal: #4d4c48;
-  --claude-olive-gray: #5e5d59;
-  --claude-stone-gray: #87867f;
-  --claude-warm-silver: #b0aea5;
-  
-  /* 深色主题 */
-  --claude-dark-surface: #30302e;
-  --claude-deep-dark: #141413;
-  
-  /* 边框 */
-  --claude-border-cream: #f0eee6;
-  --claude-border-warm: #e8e6dc;
-  --claude-ring-warm: #d1cfc5;
-  
-  /* 动画 */
-  --anim-fast: 0.2s;
-  --anim-normal: 0.3s;
-}
-
-
-/* === 背景覆盖 === */
-body {
-  background: url('../img/home-hero.png') center center / cover no-repeat fixed !important;
-  color: var(--claude-near-black);
-}
+/* === 滚动条 === */
 
 [data-scheme="dark"] body {
   background: url('../img/home-hero.png') center center / cover no-repeat fixed !important;
   color: var(--claude-warm-silver);
 }
 
-/* === 移除樱花花瓣动画 === */
+/* === 樱花花瓣动画 === */
 .ws-global-petals {
-  display: none !important;
+  z-index: 9998 !important;
+  opacity: 0.42 !important;
+  mix-blend-mode: normal !important;
 }
 
 /* === 侧边栏样式 === */
@@ -78,6 +28,21 @@ body {
 [data-scheme="dark"] .right-sidebar {
   background: rgba(20, 20, 19, 0.1) !important;
   border-color: rgba(176, 174, 165, 0.14) !important;
+}
+
+/* 左侧栏与正文卡片保持一致的透明度 */
+.sidebar.left,
+.left-sidebar {
+  background: rgba(250, 249, 245, 0.5) !important;
+  border-color: rgba(255, 255, 255, 0.34) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+[data-scheme="dark"] .sidebar.left,
+[data-scheme="dark"] .left-sidebar {
+  background: rgba(48, 48, 46, 0.36) !important;
+  border-color: rgba(176, 174, 165, 0.18) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
 }
 
 /* === 按钮样式 === */
@@ -207,7 +172,7 @@ body {
 }
 
 .ws-recent-head a {
-  color: var(--claude-terracotta) !important;
+  color: var(--claude-stone-gray) !important;
 }
 
 /* === 文章卡片标题 === */
@@ -260,23 +225,126 @@ body {
   color: var(--claude-warm-silver) !important;
 }
 
-/* === 关于链接 === */
-.ws-about-link {
-  background: rgba(255, 255, 255, 0.1) !important;
-  color: rgba(255, 250, 253, 0.96) !important;
-  border: 1px solid rgba(255, 255, 255, 0.52) !important;
-  border-radius: 8px !important;
-  padding: 12px 24px;
-  box-shadow: none !important;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: all 0.3s ease;
+/* === 首页 About + 访问统计双卡优化 === */
+.wangscape-homepage .ws-about-link-wrap,
+.wangscape-homepage .ws-site-footer {
+  width: 92vw;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.ws-about-link:hover {
-  background: rgba(255, 255, 255, 0.18) !important;
-  border-color: rgba(255, 255, 255, 0.68) !important;
-  transform: translateY(-2px);
+.wangscape-homepage .ws-about-link-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 12px 0 6px;
+}
+
+.wangscape-homepage .ws-about-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: linear-gradient(160deg, rgba(255, 245, 249, 0.78), rgba(248, 222, 236, 0.72)) !important;
+  color: #432f49 !important;
+  border: 1px solid rgba(255, 255, 255, 0.46) !important;
+  border-radius: 0 !important;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding: 16px 24px;
+  box-shadow: 0 8px 22px rgba(90, 54, 74, 0.1) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+  text-decoration: none !important;
+  letter-spacing: 0.02em;
+  font-weight: 600;
+}
+
+.wangscape-homepage .ws-about-link::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(108deg, rgba(255, 255, 255, 0) 28%, rgba(255, 255, 255, 0.22) 48%, rgba(255, 255, 255, 0) 68%);
+  transform: translateX(-140%);
+  animation: wsCardSheen 7.5s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wangscape-homepage .ws-about-link > * {
+  position: relative;
+  z-index: 1;
+}
+
+.wangscape-homepage .ws-about-link:hover {
+  background: linear-gradient(160deg, rgba(255, 247, 251, 0.84), rgba(248, 226, 239, 0.78)) !important;
+  border-color: rgba(255, 255, 255, 0.58) !important;
+  transform: translateY(-1px);
+}
+
+.wangscape-homepage .ws-site-footer {
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+  border-top: none !important;
+  padding-top: 0 !important;
+}
+
+.wangscape-homepage .ws-site-footer::before,
+.wangscape-homepage .ws-site-footer::after {
+  display: none !important;
+  content: none !important;
+}
+
+.wangscape-homepage .ws-site-footer .ws-site-stats {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 14px;
+  padding: 12px 20px;
+  border-radius: 0;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: linear-gradient(160deg, rgba(255, 245, 249, 0.78), rgba(248, 222, 236, 0.72)) !important;
+  border: 1px solid rgba(255, 255, 255, 0.46) !important;
+  color: #694f6f !important;
+  box-shadow: 0 8px 22px rgba(90, 54, 74, 0.1) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.wangscape-homepage .ws-site-footer .ws-site-stats::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(108deg, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 70%);
+  transform: translateX(-140%);
+  animation: wsCardSheen 8.2s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wangscape-homepage .ws-site-footer .ws-site-stats > * {
+  position: relative;
+  z-index: 1;
+}
+
+.wangscape-homepage .ws-site-footer .ws-site-stat-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 0.95rem;
+  font-weight: 560;
+}
+
+.wangscape-homepage .ws-site-footer .ws-site-stat-item + .ws-site-stat-item {
+  padding-left: 14px;
+  border-left: 1px solid rgba(122, 79, 100, 0.24);
 }
 
 .article-page .main article,
@@ -291,6 +359,59 @@ body {
 [data-scheme="dark"] .article-page article {
   background: rgba(20, 20, 19, 0.42) !important;
   border-color: rgba(176, 174, 165, 0.2) !important;
+}
+
+[data-scheme="dark"] .wangscape-homepage .ws-about-link {
+  background: rgba(28, 25, 34, 0.66) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: #f3e6ee !important;
+}
+
+[data-scheme="dark"] .wangscape-homepage .ws-about-link::after {
+  background: linear-gradient(108deg, rgba(255, 255, 255, 0) 34%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0) 66%);
+}
+
+[data-scheme="dark"] .wangscape-homepage .ws-about-link:hover {
+  background: rgba(28, 25, 34, 0.74) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+}
+
+[data-scheme="dark"] .wangscape-homepage .ws-site-footer .ws-site-stats {
+  background: rgba(28, 25, 34, 0.66) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: #d7c0cd !important;
+}
+
+[data-scheme="dark"] .wangscape-homepage .ws-site-footer .ws-site-stats::after {
+  background: linear-gradient(108deg, rgba(255, 255, 255, 0) 34%, rgba(255, 255, 255, 0.07) 50%, rgba(255, 255, 255, 0) 66%);
+}
+
+[data-scheme="dark"] .wangscape-homepage .ws-site-footer .ws-site-stat-item + .ws-site-stat-item {
+  border-left-color: rgba(215, 192, 205, 0.24);
+}
+
+@keyframes wsCardSheen {
+  0%,
+  12% {
+    transform: translateX(-140%);
+  }
+
+  72%,
+  100% {
+    transform: translateX(140%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wangscape-homepage .ws-about-link,
+  .wangscape-homepage .ws-site-footer .ws-site-stats {
+    transition: none !important;
+  }
+
+  .wangscape-homepage .ws-about-link::after,
+  .wangscape-homepage .ws-site-footer .ws-site-stats::after {
+    animation: none !important;
+  }
 }
 
 /* === 导航菜单 === */
@@ -514,14 +635,6 @@ footer, .footer {
   color: var(--claude-warm-silver);
 }
 
-/* === 滚动指示器 === */
-.scroll-indicator {
-  background: var(--claude-ivory);
-  border: 1px solid var(--claude-border-cream);
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
 /* === 响应式调整 === */
 @media screen and (max-width: 768px) {
   .sidebar.left,
@@ -577,6 +690,65 @@ footer, .footer {
 
 [data-scheme="dark"] ::-webkit-scrollbar-thumb {
   background: var(--claude-dark-surface);
+}
+
+/* === 侧栏底部字体清晰度优化 === */
+#i18n-switch,
+#dark-mode-toggle,
+#lang-switch,
+.lang-switch-btn {
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif !important;
+  font-size: 1.04rem !important;
+  font-weight: 560 !important;
+  line-height: 1.45 !important;
+  letter-spacing: 0.01em !important;
+  color: var(--claude-charcoal) !important;
+  opacity: 1 !important;
+}
+
+#i18n-switch select,
+#lang-switch select {
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  line-height: inherit !important;
+  color: inherit !important;
+  opacity: 1 !important;
+}
+
+#i18n-switch svg,
+#dark-mode-toggle svg,
+#lang-switch svg,
+.lang-switch-btn svg {
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+  stroke-width: 1.9 !important;
+  color: inherit !important;
+}
+
+[data-scheme="dark"] #i18n-switch,
+[data-scheme="dark"] #dark-mode-toggle,
+[data-scheme="dark"] #lang-switch,
+[data-scheme="dark"] .lang-switch-btn {
+  color: rgba(250, 249, 245, 0.94) !important;
+}
+
+.left-sidebar #main-menu .menu-bottom-section {
+  margin-top: auto;
+  padding: 8px 8px 12px;
+}
+
+.left-sidebar #i18n-switch,
+.left-sidebar #dark-mode-toggle {
+  margin: 0 6px !important;
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+[data-scheme="dark"] .left-sidebar #i18n-switch,
+[data-scheme="dark"] .left-sidebar #dark-mode-toggle {
+  background: rgba(255, 255, 255, 0.06);
 }
 
 /* === 结束 === */

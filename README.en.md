@@ -4,38 +4,13 @@
 [![Go](https://img.shields.io/badge/Go-1.21+-00ADD8?style=flat-square)](https://golang.org/)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
 
-Vantalens is a bilingual Hugo blog project with a local management tool, TalentWriter (Go).
-
-- Hosting: GitHub Pages
-- Analytics: Busuanzi
-- Comments: GitHub Issues with moderation-first workflow
-
-## Key Features
-
-- Bilingual content management (ZH/EN)
-- Local visual editing and publishing workflow
-- Comment moderation, bulk actions, and export
-- Admin-only analytics dashboard including visitor IP stats
+Vantalens is a bilingual Hugo blog project with a local management tool, TalentWriter (Go). The daily workflow uses one unified entry point: `web.exe`. It provides both the control view and the writer view. If you need to debug, you can still run the control and writer services separately.
 
 ## Quick Start
 
-### 1) Run TalentWriter
+### 1) Preview the site
 
-Windows:
-
-```bash
-TalentWriter.exe
-```
-
-Or run from source:
-
-```bash
-go run TalentWriter.go
-```
-
-Open http://127.0.0.1:8080.
-
-### 2) Preview Hugo site locally
+From the repository root:
 
 ```bash
 hugo server
@@ -43,55 +18,58 @@ hugo server
 
 Open http://localhost:1313/VantalensWeb/.
 
-### 3) Build the executable
+### 2) Run the unified launcher
+
+Enter the backend directory:
 
 ```bash
-go build -o TalentWriter.exe TalentWriter.go
+cd TalentWriter
 ```
 
-## Login and Authorization
+Build and run the launcher:
 
-TalentWriter uses local backend auth with JWT:
-
-- Admin credentials are configured via .env (ADMIN_USERNAME / ADMIN_PASSWORD)
-- JWT secret is configured via JWT_SECRET
-- Sensitive APIs (comments, stats, settings) require authentication
-
-## Comment Workflow (GitHub Issues)
-
-Default flow: submit -> issue (comment + pending) -> moderation -> approved -> visible on site.
-
-Configuration files:
-
-- [config/_default/params.toml](config/_default/params.toml)
-- [config/comment_settings.json](config/comment_settings.json)
-
-## Analytics
-
-- Public site analytics: Busuanzi script
-- Admin dashboard analytics: aggregated by TalentWriter (includes visitor IP)
-
-See [BUSUANZI_SETUP.md](BUSUANZI_SETUP.md) for details.
-
-## Project Structure
-
-```text
-content/               # Bilingual blog content
-assets/                # Frontend assets (JS/SCSS)
-config/                # Hugo and comment config
-layouts/               # Template overrides
-static/                # Static files
-TalentWriter.go            # TalentWriter source code
-TalentWriter.exe           # Windows executable
+```bash
+go build -o web.exe ./cmd/server
+./web.exe
 ```
+
+Windows standalone example:
+
+```powershell
+$env:TALENTWRITER_APP_MODE="standalone"
+$env:TALENTWRITER_AUTOSTART_HUGO="false"
+./web.exe
+```
+
+`web.exe` includes both the control and writer views.
+
+### 3) Optional debug services
+
+If you need to debug a single service, run them separately:
+
+```bash
+go run ./cmd/control
+go run ./cmd/writer
+```
+
+## Core Features
+
+- Bilingual content management (ZH/EN)
+- Local visual editing and publishing workflow
+- Comment moderation, bulk actions, and export
+- Admin-only analytics and visitor IP statistics
 
 ## Deployment
 
-Recommended deployment:
+1. Build the static site with Hugo
+2. Push to the GitHub repository
+3. Serve it with GitHub Pages
 
-1. Build static site with Hugo
-2. Push to GitHub repository
-3. Serve with GitHub Pages
+## References
+
+- Comment config: [config/_default/params.toml](config/_default/params.toml)
+- Comment settings: [config/comment_settings.json](config/comment_settings.json)
+- Analytics guide: [BUSUANZI_SETUP.md](BUSUANZI_SETUP.md)
 
 ## License
 

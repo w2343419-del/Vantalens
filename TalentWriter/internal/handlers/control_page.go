@@ -1,9 +1,9 @@
-package handlers
+﻿package handlers
 
 import "strings"
 
 func ControlHTML(writerURL string) string {
-  page := `<!doctype html>
+	page := `<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
@@ -48,7 +48,7 @@ func ControlHTML(writerURL string) string {
       font-weight: 600;
     }
     .btn.primary { background: var(--accent); color: #fff; border-color: transparent; }
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }
     .panel {
       background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
       padding: 16px; backdrop-filter: blur(8px);
@@ -61,7 +61,7 @@ func ControlHTML(writerURL string) string {
     .kpi .label { color: var(--sub); font-size: 12px; }
     .kpi .value { font-weight: 700; margin-top: 4px; }
     .log {
-      margin-top: 10px; min-height: 220px; max-height: 340px; overflow: auto;
+ margin-top: auto; min-height: 220px; max-height: 340px; overflow: auto;
       border: 1px solid var(--line); border-radius: 12px; background: rgba(13,32,23,0.9);
       color: #d7f5e5; padding: 12px; font-family: "Cascadia Mono", "Consolas", monospace; font-size: 13px;
       line-height: 1.6;
@@ -89,7 +89,6 @@ func ControlHTML(writerURL string) string {
         <button class="btn" onclick="refreshStatus()">刷新状态</button>
       </div>
     </section>
-
     <section class="panel" style="margin-bottom:14px;">
       <div class="row" style="justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
         <div>
@@ -104,21 +103,24 @@ func ControlHTML(writerURL string) string {
         </div>
       </div>
     </section>
-
     <section class="grid">
-      <article class="panel">
+      <article class="panel" style="display:flex;flex-direction:column;">
         <h2>前端总控</h2>
         <div class="kpis">
           <div class="kpi"><div class="label">Hugo 检查</div><div id="frontend-check" class="value state warn">未检查</div></div>
           <div class="kpi"><div class="label">最近构建</div><div id="frontend-build" class="value state warn">未执行</div></div>
+          <div class="kpi"><div class="label">实时预览</div><div id="frontend-preview" class="value state warn">未启动</div></div>
           <div class="kpi"><div class="label">输出摘要</div><div id="frontend-out" class="value">-</div></div>
         </div>
         <h3>操作</h3>
         <div class="row">
           <button class="btn" onclick="runControl('frontend','check')">检查 Hugo</button>
           <button class="btn" onclick="runControl('frontend','build')">执行前端构建</button>
+          <button class="btn primary" onclick="runControl('frontend','preview')">启动前端预览</button>
         </div>
-      </article>
+      
+ <h3>控制台日志</h3>
+ <div id="log" class="log">初始化中...</div></article>
 
       <article class="panel">
         <h2>后端总控</h2>
@@ -135,12 +137,9 @@ func ControlHTML(writerURL string) string {
           <button class="btn" onclick="runControl('backend','stop_control')">关闭总控端口</button>
         </div>
       </article>
-    </section>
 
-    <section class="panel" style="margin-top:14px;">
-      <h2 style="margin-top:0;">控制台日志</h2>
-      <div id="log" class="log">初始化中...</div>
-    </section>
+
+    
   </div>
 
   <script>
@@ -274,6 +273,11 @@ func ControlHTML(writerURL string) string {
           el.className = 'value ' + stateClass(ok);
           el.textContent = ok ? '成功' : '失败';
         }
+        if (scope === 'frontend' && action === 'preview') {
+          const el = document.getElementById('frontend-preview');
+          el.className = 'value ' + stateClass(ok);
+          el.textContent = ok ? '已启动' : '失败';
+        }
         if (scope === 'backend' && action === 'routes') {
           const el = document.getElementById('backend-routes');
           el.className = 'value ' + stateClass(ok);
@@ -297,3 +301,4 @@ func ControlHTML(writerURL string) string {
 	page = strings.ReplaceAll(page, "{{WRITER_URL}}", writerURL)
 	return page
 }
+ .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }

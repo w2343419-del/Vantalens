@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"runtime"
 	"strconv"
 	"strings"
@@ -24,8 +25,8 @@ func HandleControlPage(w http.ResponseWriter, r *http.Request) {
 	}
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	cfg := config.GetConfig()
-	writerURL := config.LocalhostURL(9091, "/platform/backend")
-	if cfg != nil && cfg.WriterPort > 0 {
+	writerURL := "/platform/backend"
+	if cfg != nil && cfg.LauncherMode != "all" && cfg.WriterPort > 0 {
 		writerURL = config.LocalhostURL(cfg.WriterPort, "/platform/backend")
 	}
 	_, _ = w.Write([]byte(ControlHTML(writerURL)))
@@ -37,8 +38,8 @@ func HandleWriterPageRedirect(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	cfg := config.GetConfig()
-	writerURL := config.LocalhostURL(9091, "/platform/backend")
-	if cfg != nil && cfg.WriterPort > 0 {
+	writerURL := "/platform/backend"
+	if cfg != nil && cfg.LauncherMode != "all" && cfg.WriterPort > 0 {
 		writerURL = config.LocalhostURL(cfg.WriterPort, "/platform/backend")
 	}
 	http.Redirect(w, r, writerURL, http.StatusTemporaryRedirect)
@@ -51,8 +52,8 @@ func HandleBackendPage(w http.ResponseWriter, r *http.Request) {
 	}
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	cfg := config.GetConfig()
-	controlURL := config.LocalhostURL(9090, "/platform/control")
-	if cfg != nil && cfg.ControlPort > 0 {
+	controlURL := "/platform/control"
+	if cfg != nil && cfg.LauncherMode != "all" && cfg.ControlPort > 0 {
 		controlURL = config.LocalhostURL(cfg.ControlPort, "/platform/control")
 	}
 	_, _ = w.Write([]byte(DashboardHTML("2.0.0", controlURL)))
@@ -67,7 +68,8 @@ func HandleControlStatus(w http.ResponseWriter, r *http.Request) {
 		adminSet = cfg.AdminToken != ""
 	}
 
-	frontend := runCommand(hugoPath, 25*time.Second, "hugo", "version")
+	hugoCommand := resolveHugoCommand(hugoPath)
+	frontend := runCommand(hugoPath, 25*time.Second, hugoCommand[0], append(hugoCommand[1:], "version")...)
 	backend := map[string]interface{}{
 		"service":            "online",
 		"platform":           runtime.GOOS,
@@ -124,17 +126,29 @@ func executeControlCommand(cfg *config.Config, hugoPath, scope, action string) (
 	case "frontend":
 		switch action {
 		case "check":
-			res := runCommand(hugoPath, 25*time.Second, "hugo", "version")
+			hugoCommand := resolveHugoCommand(hugoPath)
+			res := runCommand(hugoPath, 25*time.Second, hugoCommand[0], append(hugoCommand[1:], "version")...)
 			if !res.Success {
 				return map[string]interface{}{"scope": scope, "action": action, "result": res}, fmt.Errorf("hugo unavailable: %s", res.Output)
 			}
 			return map[string]interface{}{"scope": scope, "action": action, "result": res}, nil
 		case "build":
-			res := runCommand(hugoPath, 2*time.Minute, "hugo", "--minify")
+			hugoCommand := resolveHugoCommand(hugoPath)
+			res := runCommand(hugoPath, 2*time.Minute, hugoCommand[0], append(hugoCommand[1:], "--minify")...)
 			if !res.Success {
 				return map[string]interface{}{"scope": scope, "action": action, "result": res}, fmt.Errorf("frontend build failed")
 			}
 			return map[string]interface{}{"scope": scope, "action": action, "result": res}, nil
+		case "preview":
+			hugoCommand := resolveHugoCommand(hugoPath)
+			previewPort := 1313
+			previewURL := config.LocalhostURL(previewPort, "/VantalensWeb/")
+			args := append(hugoCommand[1:], "server", "--bind", "127.0.0.1", "--port", strconv.Itoa(previewPort), "--appendPort=false", "--baseURL", previewURL)
+			res := startCommand(hugoPath, hugoCommand[0], args...)
+			if !res.Success {
+				return map[string]interface{}{"scope": scope, "action": action, "result": res}, fmt.Errorf("frontend preview failed")
+			}
+			return map[string]interface{}{"scope": scope, "action": action, "result": map[string]interface{}{"preview_url": previewURL, "result": res}}, nil
 		default:
 			return nil, fmt.Errorf("unsupported frontend action: %s", action)
 		}
@@ -198,6 +212,52 @@ func stopListenerOnPort(port int) commandResult {
 	}
 	cmd := "pids=$(lsof -t -iTCP:" + strconv.Itoa(port) + " -sTCP:LISTEN 2>/dev/null); if [ -n \"$pids\" ]; then kill -9 $pids; echo \"Stopped PIDs: $pids\"; else echo \"No listener found.\"; fi"
 	return runCommand(".", 12*time.Second, "sh", "-c", cmd)
+}
+
+func resolveHugoCommand(hugoPath string) []string {
+	if hugoPath != "" {
+		if info, err := os.Stat(hugoPath); err == nil && !info.IsDir() {
+			if abs, absErr := filepath.Abs(hugoPath); absErr == nil {
+				return []string{abs}
+			}
+			return []string{hugoPath}
+		}
+		if runtime.GOOS == "windows" {
+			candidate := filepath.Join(hugoPath, "tools", "hugo", "hugo.exe")
+			if _, err := os.Stat(candidate); err == nil {
+				if abs, absErr := filepath.Abs(candidate); absErr == nil {
+					return []string{abs}
+				}
+				return []string{candidate}
+			}
+			candidate = filepath.Join(hugoPath, "tools", "hugo", "hugo")
+			if _, err := os.Stat(candidate); err == nil {
+				if abs, absErr := filepath.Abs(candidate); absErr == nil {
+					return []string{abs}
+				}
+				return []string{candidate}
+			}
+		}
+	}
+	if runtime.GOOS == "windows" {
+		if _, err := os.Stat(filepath.Join("tools", "hugo", "hugo.exe")); err == nil {
+			candidate := filepath.Join("tools", "hugo", "hugo.exe")
+			if abs, absErr := filepath.Abs(candidate); absErr == nil {
+				return []string{abs}
+			}
+			return []string{candidate}
+		}
+	}
+	return []string{"hugo"}
+}
+
+func startCommand(dir string, name string, args ...string) commandResult {
+	cmd := exec.Command(name, args...)
+	cmd.Dir = dir
+	if err := cmd.Start(); err != nil {
+		return commandResult{Success: false, Output: err.Error()}
+	}
+	return commandResult{Success: true, Output: fmt.Sprintf("started pid %d", cmd.Process.Pid)}
 }
 
 type commandResult struct {

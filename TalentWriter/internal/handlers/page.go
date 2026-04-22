@@ -328,16 +328,33 @@ func DashboardHTML(version string, controlURL string) string {
         const active = post.path === state.currentPath ? 'active' : '';
         const badgeClass = post.status === 'DRAFT' ? 'warn' : 'ok';
         const encodedPath = encodeURIComponent(post.path || '');
-        return '<div class="post ' + active + '" onclick="openPostByEncoded(\'' + encodedPath + '\')">' +
+        return '<div class="post ' + active + '" role="button" tabindex="0" data-path="' + encodedPath + '">' +
           '<div class="post-title">' + escapeHtml(post.title || fallbackTitleFromPath(post.path) || 'Untitled') + '</div>' +
           '<div class="post-meta"><span>' + escapeHtml(post.path) + '</span><span class="badge ' + badgeClass + '">' + escapeHtml(post.status || 'PUBLISHED') + '</span></div>' +
           '</div>';
       }).join('');
     }
 
-    function openPostByEncoded(encodedPath) {
-      if (!encodedPath) return;
-      openPost(decodeURIComponent(encodedPath));
+    function bindPostListEvents() {
+      const list = document.getElementById('post-list');
+      if (!list || list.dataset.bound === '1') return;
+      list.addEventListener('click', function (event) {
+        const item = event.target.closest('.post[data-path]');
+        if (!item || !list.contains(item)) return;
+        const encodedPath = item.getAttribute('data-path');
+        if (!encodedPath) return;
+        openPost(decodeURIComponent(encodedPath));
+      });
+      list.addEventListener('keydown', function (event) {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        const item = event.target.closest('.post[data-path]');
+        if (!item || !list.contains(item)) return;
+        event.preventDefault();
+        const encodedPath = item.getAttribute('data-path');
+        if (!encodedPath) return;
+        openPost(decodeURIComponent(encodedPath));
+      });
+      list.dataset.bound = '1';
     }
 
     async function openPost(path) {
@@ -604,6 +621,7 @@ func DashboardHTML(version string, controlURL string) string {
 
     (async function init() {
       setAuth();
+      bindPostListEvents();
       await checkHealth();
       if (hasToken()) {
         await loadPosts();
