@@ -197,6 +197,10 @@ body {
     overflow-y: auto;
 }
 
+body.wangscape-homepage {
+    background: linear-gradient(130deg, rgba(250, 221, 233, 0.55), rgba(241, 199, 218, 0.45)), url('../img/home-hero.png') center top / cover no-repeat fixed !important;
+}
+
 body::before {
     content: '';
     position: fixed;
@@ -1249,7 +1253,7 @@ article .post-content,
 
 /* ===== 暗色模式 ===== */
 [data-scheme="dark"] body {
-    background: linear-gradient(130deg, rgba(30, 16, 24, 0.72), rgba(52, 28, 42, 0.68)), url('../img/home-hero.png') center center / cover no-repeat fixed;
+    background: linear-gradient(130deg, rgba(30, 16, 24, 0.72), rgba(52, 28, 42, 0.68)), url('../img/home-hero.png') center top / cover no-repeat fixed;
 }
 
 [data-scheme="dark"] .main {
@@ -1710,8 +1714,9 @@ article,
     min-height: 100dvh;
     border-radius: 20px;
     padding: clamp(20px, 3vw, 40px) clamp(18px, 4vw, 56px);
-    background: url('../img/home-hero.png') center 25% / cover no-repeat;
-    background-attachment: fixed;
+    background: transparent !important;
+    background-image: none !important;
+    background-attachment: scroll !important;
     overflow: hidden;
     box-shadow: 0 12px 30px rgba(92, 54, 72, 0.18);
 }
@@ -3084,6 +3089,8 @@ article,
     overflow: hidden;
     padding: 0;
     isolation: isolate;
+    background: transparent !important;
+    background-image: none !important;
 }
 
 .wangscape-homepage .ws-cinema-scene,
