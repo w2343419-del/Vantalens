@@ -22,7 +22,7 @@
         <div class="ws-cinema-vignette" aria-hidden="true"></div>
         <div class="ws-hero-actions">
             {{ range .Translations }}
-            <a class="ws-btn ws-btn-ghost" href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
+            <a class="ws-btn ws-btn-ghost" href="{{ .RelPermalink }}">{{ .Language.LanguageName }}</a>
             {{ end }}
             <button class="ws-btn" type="button" data-home-theme-toggle>
                 {{ if $isZh }}切换明暗{{ else }}Theme Mode{{ end }}
@@ -40,19 +40,19 @@
     </section>
 
     <section class="ws-entry-grid" aria-label="Main Sections">
-        <a class="ws-entry-card" href="{{ $postPage.Permalink }}">
+        <a class="ws-entry-card" href="{{ "/post/" | relURL }}">
             <h3>{{ if $isZh }}文章{{ else }}Posts{{ end }}</h3>
             <p>{{ if $isZh }}最近：{{ else }}Recent: {{ end }}{{ with index $recent 0 }}{{ .Title }}{{ else }}{{ if $isZh }}暂无文章{{ else }}No posts yet{{ end }}{{ end }}</p>
         </a>
-        <a class="ws-entry-card" href="{{ $searchPage.Permalink }}">
+        <a class="ws-entry-card" href="{{ "/search/" | relURL }}">
             <h3>{{ if $isZh }}搜索{{ else }}Search{{ end }}</h3>
             <p>{{ if $isZh }}标题、标签、摘要一键检索{{ else }}Find by title, tags, and snippets{{ end }}</p>
         </a>
-        <a class="ws-entry-card" href="{{ $archivesPage.Permalink }}">
+        <a class="ws-entry-card" href="{{ "/archives/" | relURL }}">
             <h3>{{ if $isZh }}归档{{ else }}Archive{{ end }}</h3>
             <p>{{ if $isZh }}沿时间线回看写作轨迹{{ else }}Read along a timeline of writing{{ end }}</p>
         </a>
-        <a class="ws-entry-card" href="{{ $linksPage.Permalink }}">
+        <a class="ws-entry-card" href="{{ "/links/" | relURL }}">
             <h3>{{ if $isZh }}友链{{ else }}Friends{{ end }}</h3>
             <p>{{ if $isZh }}同频站点与长期收藏{{ else }}Resonant sites and long-term picks{{ end }}</p>
         </a>
@@ -61,7 +61,7 @@
     <section class="ws-recent">
         <div class="ws-recent-head">
             <h2>{{ if $isZh }}最近更新{{ else }}Recent Writings{{ end }}</h2>
-            <a href="{{ $postPage.Permalink }}">{{ if $isZh }}查看全部{{ else }}View all{{ end }}</a>
+            <a href="{{ "/post/" | relURL }}">{{ if $isZh }}查看全部{{ else }}View all{{ end }}</a>
         </div>
 
         <div class="ws-recent-grid">

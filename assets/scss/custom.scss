@@ -3105,6 +3105,12 @@ article,
     z-index: 1;
 }
 
+/* Prevent cinematic canvas layers from blocking card links. */
+.wangscape-homepage .ws-cinema-scene,
+.wangscape-homepage .ws-cinema-scene canvas {
+    pointer-events: none;
+}
+
 .wangscape-homepage .ws-cinema-mist {
     position: absolute;
     inset: 0;
@@ -3382,6 +3388,13 @@ article,
 .wangscape-homepage .ws-recent {
     position: relative;
     z-index: 5;
+}
+
+/* Ensure homepage entry cards stay clickable on top layer. */
+.wangscape-homepage .ws-entry-grid,
+.wangscape-homepage .ws-entry-card,
+.wangscape-homepage .ws-entry-card * {
+    pointer-events: auto;
 }
 
 
