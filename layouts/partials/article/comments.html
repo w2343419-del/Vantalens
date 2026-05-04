@@ -394,10 +394,37 @@
         return String(input || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
     }
 
+    function scheduleCommentsLoad() {
+        if (!rootEl) {
+            loadComments();
+            return;
+        }
+        let loaded = false;
+        function run() {
+            if (loaded) return;
+            loaded = true;
+            loadComments();
+        }
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver(function (entries) {
+                if (!entries.some(function (entry) { return entry.isIntersecting; })) return;
+                observer.disconnect();
+                run();
+            }, { rootMargin: '600px 0px' });
+            observer.observe(rootEl);
+            return;
+        }
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(run, { timeout: 2400 });
+        } else {
+            setTimeout(run, 1200);
+        }
+    }
+
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', loadComments, { once: true });
+        document.addEventListener('DOMContentLoaded', scheduleCommentsLoad, { once: true });
     } else {
-        loadComments();
+        scheduleCommentsLoad();
     }
 })();
 </script>
